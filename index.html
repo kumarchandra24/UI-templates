@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="UI Template Collection - Modern web applications created by our team."
+    >
+
+    <title>UI Template Collection | Team Showcase</title>
+
+    <style>
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(124, 58, 237, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(6, 182, 212, 0.20),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 90%,
+                    rgba(236, 72, 153, 0.16),
+                    transparent 30%
+                ),
+                #050610;
+
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 36px));
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           ANIMATED BACKGROUND
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -5;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: floating 10s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: #7c3aed;
+            top: 5%;
+            left: -120px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: #06b6d4;
+            right: -100px;
+            top: 35%;
+            animation-delay: -3s;
+        }
+
+        .orb-3 {
+            width: 330px;
+            height: 330px;
+            background: #ec4899;
+            bottom: -150px;
+            left: 40%;
+            animation-delay: -6s;
+        }
+
+        @keyframes floating {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.08);
+            }
+
+            100% {
+                transform: translate(-20px, 25px) scale(1.15);
+            }
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(5, 6, 16, 0.72);
+            backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .navbar {
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 10px 40px rgba(124, 58, 237, 0.45);
+
+            font-size: 21px;
+
+            animation: brandPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes brandPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08) rotate(3deg);
+            }
+        }
+
+        .brand-text {
+            font-size: 16px;
+        }
+
+        .brand-subtitle {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #8f96b0;
+
+            font-size: 10px;
+
+            letter-spacing: 0.13em;
+
+            text-transform: uppercase;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 11px 17px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            background: rgba(255, 255, 255, 0.05);
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            border-color: rgba(139, 92, 246, 0.55);
+
+            background: rgba(255, 255, 255, 0.09);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-primary {
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #ec4899
+                );
+
+            box-shadow:
+                0 10px 35px rgba(124, 58, 237, 0.30);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            text-align: center;
+
+            padding: 100px 0 70px;
+        }
+
+        .badge {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 999px;
+
+            background: rgba(124, 58, 237, 0.10);
+
+            border: 1px solid rgba(124, 58, 237, 0.30);
+
+            color: #d8caff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #34d399;
+
+            box-shadow:
+                0 0 15px #34d399;
+
+            animation: statusPulse 1.8s infinite;
+        }
+
+        @keyframes statusPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.55;
+            }
+        }
+
+        .hero h1 {
+            max-width: 900px;
+
+            margin: auto;
+
+            font-size: clamp(
+                44px,
+                7vw,
+                82px
+            );
+
+            line-height: 0.98;
+
+            letter-spacing: -0.065em;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff,
+                    #b9a4ff,
+                    #5ee7f5,
+                    #f5a6d0
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            background-size: 250% auto;
+
+            animation: gradientMove 5s linear infinite;
+        }
+
+        @keyframes gradientMove {
+
+            to {
+                background-position: 250% center;
+            }
+        }
+
+        .hero-description {
+            max-width: 720px;
+
+            margin: 27px auto 0;
+
+            color: #9ea6c0;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           STATISTICS
+        ========================================================= */
+
+        .statistics {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+            margin-top: 38px;
+        }
+
+        .stat {
+            min-width: 145px;
+
+            padding: 16px 20px;
+
+            border-radius: 17px;
+
+            background: rgba(255, 255, 255, 0.035);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.25s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(139, 92, 246, 0.45);
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 23px;
+        }
+
+        .stat span {
+            color: #858da7;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           TOOLBAR
+        ========================================================= */
+
+        .toolbar {
+            position: sticky;
+
+            top: 76px;
+
+            z-index: 50;
+
+            padding: 18px 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(5, 6, 16, 0.96),
+                    rgba(5, 6, 16, 0.70),
+                    transparent
+                );
+
+            backdrop-filter: blur(10px);
+        }
+
+        .toolbar-content {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1 1 320px;
+
+            position: relative;
+        }
+
+        .search-box span {
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8991aa;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 14px 17px 14px 44px;
+
+            border-radius: 14px;
+
+            outline: none;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            background: rgba(16, 19, 36, 0.92);
+
+            color: white;
+        }
+
+        .search-box input:focus {
+            border-color:
+                rgba(139, 92, 246, 0.65);
+
+            box-shadow:
+                0 0 0 4px rgba(139, 92, 246, 0.08);
+        }
+
+        .filters {
+            display: flex;
+
+            gap: 7px;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter {
+            white-space: nowrap;
+
+            padding: 10px 14px;
+
+            border-radius: 999px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            color: #9299b2;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .filter:hover,
+        .filter.active {
+            color: white;
+
+            background:
+                rgba(124, 58, 237, 0.17);
+
+            border-color:
+                rgba(124, 58, 237, 0.50);
+        }
+
+
+        /* =========================================================
+           PROJECT SECTION
+        ========================================================= */
+
+        .projects {
+            padding: 30px 0 100px;
+        }
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 20px;
+
+            margin-bottom: 26px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+
+            letter-spacing: -0.04em;
+        }
+
+        .section-header p {
+            color: #8e96ae;
+
+            margin-top: 7px;
+        }
+
+        .project-count {
+            color: #c8cee2;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           PROJECT GRID
+        ========================================================= */
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================================================
+           PROJECT CARD
+        ========================================================= */
+
+        .project-card {
+            --accent: #8b5cf6;
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 365px;
+
+            border-radius: 25px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24, 28, 50, 0.88),
+                    rgba(10, 12, 25, 0.92)
+                );
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.30);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+
+            animation:
+                cardAppear 0.7s ease both;
+        }
+
+        .project-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            filter: blur(75px);
+
+            opacity: 0.10;
+
+            right: -80px;
+            top: -80px;
+
+            transition: 0.4s;
+        }
+
+        .project-card:hover {
+            transform:
+                translateY(-10px)
+                scale(1.015);
+
+            border-color:
+                color-mix(
+                    in srgb,
+                    var(--accent) 55%,
+                    transparent
+                );
+
+            box-shadow:
+                0 35px 80px rgba(0, 0, 0, 0.45);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.25;
+
+            transform: scale(1.4);
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================================
+           PROJECT PREVIEW
+        ========================================================= */
+
+        .project-preview {
+            height: 150px;
+
+            padding: 18px;
+
+            position: relative;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    color-mix(
+                        in srgb,
+                        var(--accent) 20%,
+                        transparent
+                    ),
+                    transparent 65%
+                );
+        }
+
+        .browser {
+            width: 100%;
+            height: 100%;
+
+            padding: 11px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(3, 5, 12, 0.70);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            box-shadow:
+                inset 0 0 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .browser-bar {
+            display: flex;
+
+            gap: 5px;
+
+            margin-bottom: 10px;
+        }
+
+        .browser-bar i {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.35);
+        }
+
+        .browser-layout {
+            display: grid;
+
+            grid-template-columns:
+                34% 1fr;
+
+            gap: 8px;
+
+            height: 88px;
+        }
+
+        .fake-sidebar,
+        .fake-content {
+            border-radius: 7px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+        }
+
+        .fake-content {
+            padding: 7px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 6px;
+        }
+
+        .fake-box {
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    color-mix(
+                        in srgb,
+                        var(--accent) 55%,
+                        transparent
+                    ),
+                    rgba(255,255,255,.04)
+                );
+
+            animation:
+                miniMove 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes miniMove {
+
+            to {
+                transform: translateY(-3px);
+            }
+        }
+
+        .project-number {
+            position: absolute;
+
+            right: 17px;
+            bottom: 11px;
+
+            font-size: 45px;
+
+            font-weight: 900;
+
+            color:
+                rgba(255, 255, 255, 0.07);
+        }
+
+
+        /* =========================================================
+           PROJECT CONTENT
+        ========================================================= */
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-icon {
+            width: 47px;
+            height: 47px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                color-mix(
+                    in srgb,
+                    var(--accent) 16%,
+                    transparent
+                );
+
+            border:
+                1px solid
+                color-mix(
+                    in srgb,
+                    var(--accent) 38%,
+                    transparent
+                );
+
+            color: white;
+
+            font-size: 22px;
+
+            margin-bottom: 15px;
+        }
+
+        .project-content h3 {
+            font-size: 19px;
+
+            margin-bottom: 8px;
+
+            letter-spacing: -0.02em;
+        }
+
+        .project-content p {
+            color: #969db6;
+
+            line-height: 1.55;
+
+            font-size: 13px;
+
+            min-height: 42px;
+        }
+
+        .project-footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 17px;
+        }
+
+        .category {
+            padding: 6px 9px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border:
+                1px solid
+                rgba(255,255,255,.09);
+
+            color: #c8cee1;
+
+            font-size: 11px;
+
+            font-weight: 750;
+        }
+
+        .open-project {
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.2s;
+        }
+
+        .project-card:hover .open-project {
+            color: var(--accent);
+
+            transform: translateX(4px);
+        }
+
+
+        /* =========================================================
+           EMPTY SEARCH
+        ========================================================= */
+
+        .empty {
+            display: none;
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            border:
+                1px dashed
+                rgba(255,255,255,.15);
+
+            border-radius: 20px;
+
+            color: #9098b1;
+        }
+
+        .empty.show {
+            display: block;
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+            padding: 80px 0;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+        }
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 0.8fr;
+
+            gap: 22px;
+        }
+
+        .panel {
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,.09);
+        }
+
+        .panel h2 {
+            font-size: 27px;
+
+            margin-bottom: 13px;
+        }
+
+        .panel p {
+            color: #969db5;
+
+            line-height: 1.75;
+        }
+
+        .workflow {
+            margin-top: 20px;
+
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .workflow-step {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+        }
+
+        .workflow-number {
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+
+            padding: 30px 0 45px;
+
+            color: #858da6;
+        }
+
+        .footer-content {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+        .footer-content strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .project-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: calc(100% - 24px);
+            }
+
+            .navbar {
+                min-height: 67px;
+            }
+
+            .nav-buttons .btn:first-child {
+                display: none;
+            }
+
+            .hero {
+                padding:
+                    70px 0 50px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .toolbar {
+                top: 67px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .project-card {
+                min-height: 345px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ============================================================
+     ANIMATED BACKGROUND
+============================================================ -->
+
+<div class="background">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+
+<header>
+
+    <div class="container navbar">
+
+        <a href="#" class="brand">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div class="brand-text">
+
+                UI Template Collection
+
+                <span class="brand-subtitle">
+                    Team Showcase • 2026
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-buttons">
+
+            <a
+                href="#about"
+                class="btn"
+            >
+                About
+            </a>
+
+
+            <a
+                href="https://github.com/kumarchandra24/UI-templates"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-primary"
+            >
+                GitHub ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+
+<main>
+
+<section class="hero container">
+
+    <div class="badge">
+
+        <span class="status-dot"></span>
+
+        8 PROJECTS • ONE COLLECTION
+
+    </div>
+
+
+    <h1>
+
+        Modern interfaces,
+
+        <span class="gradient-text">
+            built to impress.
+        </span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        Welcome to our UI Template Collection — a showcase of modern
+        web applications created by our team using responsive HTML,
+        CSS and JavaScript. Explore every project from one beautiful
+        central dashboard.
+
+    </p>
+
+
+    <div class="statistics">
+
+        <div class="stat">
+            <strong>08</strong>
+            <span>Projects</span>
+        </div>
+
+        <div class="stat">
+            <strong>100%</strong>
+            <span>Responsive</span>
+        </div>
+
+        <div class="stat">
+            <strong>HTML</strong>
+            <span>CSS + JavaScript</span>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <span>Ideas</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     SEARCH + FILTER
+============================================================ -->
+
+<section class="toolbar">
+
+    <div class="container toolbar-content">
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search projects..."
+            >
+
+        </div>
+
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                class="filter"
+                data-filter="education"
+            >
+                Education
+            </button>
+
+            <button
+                class="filter"
+                data-filter="business"
+            >
+                Business
+            </button>
+
+            <button
+                class="filter"
+                data-filter="productivity"
+            >
+                Productivity
+            </button>
+
+            <button
+                class="filter"
+                data-filter="security"
+            >
+                Security
+            </button>
+
+            <button
+                class="filter"
+                data-filter="service"
+            >
+                Services
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     PROJECTS
+============================================================ -->
+
+<section class="projects container">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Project Collection
+            </h2>
+
+            <p>
+                Select any project to launch the complete website.
+            </p>
+
+        </div>
+
+
+        <span
+            class="project-count"
+            id="projectCount"
+        >
+            8 projects
+        </span>
+
+    </div>
+
+
+
+    <div
+        class="project-grid"
+        id="projectGrid"
+    >
+
+
+        <!-- =====================================================
+             01 ALGO LAB
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="education"
+            data-search="algolab algorithm algorithms coding education learning"
+            style="--accent:#22d3ee;"
+        >
+
+            <a href="./algolab/algolab/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        01
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ⌘
+                    </div>
+
+                    <h3>
+                        AlgoLab
+                    </h3>
+
+                    <p>
+                        Interactive algorithm and coding-focused interface
+                        for learning and experimentation.
+                    </p>
+
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Education
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             02 APPOINTMENT
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="service"
+            data-search="appointment booking appointments schedule service"
+            style="--accent:#8b5cf6;"
+        >
+
+            <a href="./appointment-booking/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        02
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ◷
+                    </div>
+
+                    <h3>
+                        Appointment Booking
+                    </h3>
+
+                    <p>
+                        A clean scheduling experience designed for booking
+                        and managing appointments.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Services
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             03 GYM
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="business"
+            data-search="gym management fitness gym members business"
+            style="--accent:#f97316;"
+        >
+
+            <a href="./Gym_Management_Arvid_Sawmi/Gym_Management_Arvid_Sawmi/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        03
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Gym Management
+                    </h3>
+
+                    <p>
+                        Modern dashboard experience for managing gym
+                        operations, members and fitness workflows.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Business
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             04 POLICY
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="business"
+            data-search="policy management insurance business policy"
+            style="--accent:#ec4899;"
+        >
+
+            <a href="./Policy_Management_Arvid/Policy_Management_Arvid/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        04
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        Policy Management
+                    </h3>
+
+                    <p>
+                        Professional policy-management interface with
+                        a polished dashboard experience.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Business
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             05 RECHARGE
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="productivity"
+            data-search="recharge mobile dth broadband wallet payment bills"
+            style="--accent:#a78bfa;"
+        >
+
+            <a href="./recharge_platform/recharge_platform_arvid/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        05
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ↯
+                    </div>
+
+                    <h3>
+                        Recharge Platform
+                    </h3>
+
+                    <p>
+                        Feature-rich recharge and bill-payment platform
+                        with wallet and transaction experiences.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Productivity
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             06 SREEKARAM
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="service"
+            data-search="sreekaram service application community"
+            style="--accent:#34d399;"
+        >
+
+            <a href="./sreekaram/sreekaram/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        06
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Sreekaram
+                    </h3>
+
+                    <p>
+                        A modern service-oriented application presented
+                        through a clean and engaging UI.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Services
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             07 STUDENT ANALYTICS
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="education"
+            data-search="student analytics students education dashboard performance"
+            style="--accent:#38bdf8;"
+        >
+
+            <a href="./student_analytics_project_v5/student_analytics_project_v5/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        07
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ▥
+                    </div>
+
+                    <h3>
+                        Student Analytics
+                    </h3>
+
+                    <p>
+                        Analytics dashboard designed to visualize
+                        student-focused information and performance.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Education
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             08 URLSHIELD
+        ====================================================== -->
+
+        <article
+            class="project-card"
+            data-category="security"
+            data-search="urlshield url security cyber security safe links"
+            style="--accent:#ef4444;"
+        >
+
+            <a href="./urlshield/urlshield/index.html">
+
+                <div class="project-preview">
+
+                    <div class="browser">
+
+                        <div class="browser-bar">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="browser-layout">
+
+                            <div class="fake-sidebar"></div>
+
+                            <div class="fake-content">
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                                <div class="fake-box"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">
+                        08
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <div class="project-icon">
+                        ⌁
+                    </div>
+
+                    <h3>
+                        URLShield
+                    </h3>
+
+                    <p>
+                        Security-focused interface for checking and
+                        presenting URL safety information.
+                    </p>
+
+                    <div class="project-footer">
+
+                        <span class="category">
+                            Security
+                        </span>
+
+                        <span class="open-project">
+                            Open Project →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </article>
+
+
+    </div>
+
+
+    <div
+        class="empty"
+        id="emptyState"
+    >
+
+        <h3>
+            No projects found
+        </h3>
+
+        <p>
+            Try another project name or category.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     ABOUT / GITHUB WORKFLOW
+============================================================ -->
+
+<section
+    class="about"
+    id="about"
+>
+
+    <div class="container about-grid">
+
+
+        <div class="panel">
+
+            <h2>
+                About Our Collection
+            </h2>
+
+            <p>
+
+                This repository contains a collection of modern web
+                UI templates created by our team as part of the
+                UI Template Collection Hackathon.
+
+                Each project has its own folder, assets and
+                implementation. This central dashboard provides
+                a simple way to explore the complete collection.
+
+            </p>
+
+        </div>
+
+
+        <div class="panel">
+
+            <h2>
+                GitHub Workflow
+            </h2>
+
+            <p>
+                Our team follows a collaborative GitHub workflow.
+            </p>
+
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    <span class="workflow-number">1</span>
+                    <span>Fork / Clone repository</span>
+                </div>
+
+                <div class="workflow-step">
+                    <span class="workflow-number">2</span>
+                    <span>Create feature branch</span>
+                </div>
+
+                <div class="workflow-step">
+                    <span class="workflow-number">3</span>
+                    <span>Develop and commit</span>
+                </div>
+
+                <div class="workflow-step">
+                    <span class="workflow-number">4</span>
+                    <span>Push and create Pull Request</span>
+                </div>
+
+                <div class="workflow-step">
+                    <span class="workflow-number">5</span>
+                    <span>Review and merge</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <strong>
+                UI Template Collection
+            </strong>
+
+            <br>
+
+            <span>
+                Built with HTML • CSS • JavaScript
+            </span>
+
+        </div>
+
+
+        <a
+            href="https://github.com/kumarchandra24/UI-templates"
+            target="_blank"
+            rel="noopener"
+            class="btn"
+        >
+            View GitHub Repository ↗
+        </a>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+
+<script>
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const projectCount =
+        document.getElementById("projectCount");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+    const projectCards =
+        Array.from(
+            document.querySelectorAll(".project-card")
+        );
+
+    const filterButtons =
+        Array.from(
+            document.querySelectorAll(".filter")
+        );
+
+
+    let currentFilter = "all";
+
+
+    function updateProjects() {
+
+        const searchValue =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+        let visibleProjects = 0;
+
+
+        projectCards.forEach((card, index) => {
+
+            const category =
+                card.dataset.category;
+
+            const searchText =
+                card.dataset.search.toLowerCase();
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                category === currentFilter;
+
+
+            const matchesSearch =
+                searchValue === "" ||
+                searchText.includes(searchValue);
+
+
+            const shouldShow =
+                matchesFilter &&
+                matchesSearch;
+
+
+            if (shouldShow) {
+
+                card.style.display = "";
+
+                card.style.animationDelay =
+                    `${index * 50}ms`;
+
+                visibleProjects++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+        projectCount.textContent =
+            `${visibleProjects} project${visibleProjects === 1 ? "" : "s"}`;
+
+
+        emptyState.classList.toggle(
+            "show",
+            visibleProjects === 0
+        );
+
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        updateProjects
+    );
+
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                filterButtons.forEach(
+                    item =>
+                        item.classList.remove("active")
+                );
+
+
+                button.classList.add("active");
+
+
+                currentFilter =
+                    button.dataset.filter;
+
+
+                updateProjects();
+
+            }
+        );
+
+    });
+
+
+    updateProjects();
+
+</script>
+
+
+</body>
+</html>
