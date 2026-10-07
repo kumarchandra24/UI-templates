@@ -1,0 +1,26 @@
+{
+  "user": {
+    "name": "Arvid",
+    "membership": "Premium"
+  },
+  "wallet": {
+    "balance": 2480
+  },
+  "operators": [
+    "Jio",
+    "Airtel",
+    "Vi",
+    "BSNL"
+  ],
+  "services": [
+    "Mobile",
+    "DTH",
+    "Broadband",
+    "Electricity",
+    "Water",
+    "Gas",
+    "Credit Card",
+    "Insurance",
+    "Subscriptions"
+  ]
+}

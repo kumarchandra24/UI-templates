@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
+  <title>Arvid Recharge Hub</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">A</div><div><strong>Arvid</strong><span>Recharge Hub</span></div></div>
+    <button class="mobile-close" id="closeSidebar">×</button>
+    <nav>
+      <a class="nav-link active" href="#dashboard" data-view="dashboard">⌂ <span>Dashboard</span></a>
+      <a class="nav-link" href="#recharge" data-view="recharge">⚡ <span>Recharge</span></a>
+      <a class="nav-link" href="#plans" data-view="plans">◈ <span>Plans</span></a>
+      <a class="nav-link" href="#transactions" data-view="transactions">↔ <span>Transactions</span></a>
+      <a class="nav-link" href="#wallet" data-view="wallet">◉ <span>Wallet</span></a>
+      <a class="nav-link" href="#bills" data-view="bills">▣ <span>Bill Payments</span></a>
+      <a class="nav-link" href="#contacts" data-view="contacts">♙ <span>Contacts</span></a>
+      <a class="nav-link" href="#support" data-view="support">?</span> <span>Support</span></a>
+    </nav>
+    <div class="side-promo">
+      <div class="spark">✦</div><b>Instant rewards</b>
+      <p>Earn points on every successful recharge.</p>
+      <button class="ghost-btn" onclick="showToast('Rewards center opened')">View rewards</button>
+    </div>
+    <div class="profile-mini"><div class="avatar">A</div><div><b>Arvid</b><small>Premium member</small></div><button onclick="openModal('profileModal')">⋯</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="openSidebar">☰</button>
+      <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageTitle">Dashboard</strong></div>
+      <div class="top-actions">
+        <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search plans, contacts, transactions..."></div>
+        <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+        <button class="icon-btn notification-btn" onclick="openModal('notificationModal')">♢<i>3</i></button>
+        <button class="top-avatar" onclick="openModal('profileModal')">A</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="view active" id="dashboardView">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">GOOD MORNING, ARVID ✦</span>
+            <h1>Recharge smarter.<br><em>Move faster.</em></h1>
+            <p>One beautiful workspace for mobile, DTH, broadband and bill payments.</p>
+            <div class="hero-actions"><button class="primary-btn" onclick="setView('recharge')">⚡ Start recharge</button><button class="soft-btn" onclick="setView('plans')">Explore plans →</button></div>
+          </div>
+          <div class="hero-orb"><div class="orb-ring"></div><div class="orb-core">₹<strong>2,480</strong><small>Available wallet</small></div></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon violet">↯</div><span>Total recharges</span><strong id="statRecharge">28</strong><small class="up">↑ 18.4% this month</small></div>
+          <div class="stat-card"><div class="stat-icon cyan">₹</div><span>Monthly spend</span><strong id="statSpend">₹3,840</strong><small class="up">↑ 9.2% vs last month</small></div>
+          <div class="stat-card"><div class="stat-icon pink">★</div><span>Reward points</span><strong>1,840</strong><small class="up">+240 earned this week</small></div>
+          <div class="stat-card"><div class="stat-icon orange">✓</div><span>Success rate</span><strong>99.2%</strong><small>Last 30 days</small></div>
+        </div>
+
+        <div class="section-head"><div><span class="eyebrow">QUICK ACTIONS</span><h2>What do you need today?</h2></div></div>
+        <div class="quick-grid">
+          <button onclick="setView('recharge'); selectType('mobile')" class="quick-card"><span class="quick-icon q-purple">⌁</span><b>Mobile recharge</b><small>Prepaid & postpaid</small><span>→</span></button>
+          <button onclick="setView('recharge'); selectType('dth')" class="quick-card"><span class="quick-icon q-blue">◉</span><b>DTH recharge</b><small>TV & entertainment</small><span>→</span></button>
+          <button onclick="setView('recharge'); selectType('broadband')" class="quick-card"><span class="quick-icon q-green">⌁</span><b>Broadband</b><small>Pay internet bills</small><span>→</span></button>
+          <button onclick="setView('bills')" class="quick-card"><span class="quick-icon q-orange">▣</span><b>Pay bills</b><small>Electricity & more</small><span>→</span></button>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head"><div><span class="eyebrow">RECENT</span><h3>Recent transactions</h3></div><button class="link-btn" onclick="setView('transactions')">View all →</button></div>
+            <div id="recentList"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><span class="eyebrow">FAVORITES</span><h3>Quick recharge</h3></div><button class="link-btn" onclick="setView('contacts')">Manage</button></div>
+            <div class="favorite-list" id="favoriteList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="rechargeView">
+        <div class="section-banner"><div><span class="eyebrow">RECHARGE CENTER</span><h1>Top up in seconds.</h1><p>Choose a service, pick a plan and pay securely.</p></div><div class="banner-badge">⚡ Instant processing</div></div>
+        <div class="recharge-layout">
+          <div class="panel recharge-panel">
+            <div class="service-tabs">
+              <button class="service-tab active" data-type="mobile" onclick="selectType('mobile')">📱 Mobile</button>
+              <button class="service-tab" data-type="dth" onclick="selectType('dth')">📺 DTH</button>
+              <button class="service-tab" data-type="broadband" onclick="selectType('broadband')">🌐 Broadband</button>
+            </div>
+            <form id="rechargeForm">
+              <label>Service number<input id="serviceNumber" required inputmode="numeric" placeholder="Enter mobile / subscriber number"></label>
+              <div class="form-row"><label>Operator<select id="operator"><option>Jio</option><option>Airtel</option><option>Vi</option><option>BSNL</option></select></label><label>Circle<select id="circle"><option>Chennai</option><option>Tamil Nadu</option><option>Karnataka</option><option>Kerala</option></select></label></div>
+              <label>Amount<div class="amount-input"><span>₹</span><input id="amount" required type="number" min="10" placeholder="Enter amount"><button type="button" onclick="applyAmount(199)">₹199</button><button type="button" onclick="applyAmount(299)">₹299</button><button type="button" onclick="applyAmount(599)">₹599</button></div></label>
+              <div class="mini-summary"><span>Wallet balance</span><b>₹2,480</b><span>Convenience fee</span><b class="green">₹0</b></div>
+              <button class="primary-btn wide" type="submit">Continue to payment <span>→</span></button>
+            </form>
+          </div>
+          <div class="panel plans-side"><div class="panel-head"><div><span class="eyebrow">SMART PICKS</span><h3>Popular plans</h3></div><button class="link-btn" onclick="setView('plans')">All plans</button></div><div id="miniPlans"></div></div>
+        </div>
+      </section>
+
+      <section class="view" id="plansView">
+        <div class="section-head"><div><span class="eyebrow">PLAN CATALOG</span><h1>Find your perfect plan.</h1><p>Compare benefits before you recharge.</p></div><div class="filter-pills" id="planFilters"><button class="active" data-filter="all">All</button><button data-filter="data">Data</button><button data-filter="unlimited">Unlimited</button><button data-filter="annual">Annual</button></div></div>
+        <div class="plans-grid" id="plansGrid"></div>
+      </section>
+
+      <section class="view" id="transactionsView">
+        <div class="section-head"><div><span class="eyebrow">ACTIVITY</span><h1>Transaction center.</h1><p>Every recharge and payment, neatly organized.</p></div><button class="soft-btn" onclick="exportCSV()">↓ Export CSV</button></div>
+        <div class="toolbar"><div class="search"><span>⌕</span><input id="txSearch" placeholder="Search transactions"></div><select id="txFilter"><option value="all">All status</option><option value="Success">Success</option><option value="Pending">Pending</option><option value="Failed">Failed</option></select></div>
+        <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Service</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="txTable"></tbody></table></div></div>
+      </section>
+
+      <section class="view" id="walletView">
+        <div class="wallet-hero"><div><span class="eyebrow">ARVID WALLET</span><h1>₹2,480.00</h1><p>Available balance • Updated just now</p><div class="wallet-actions"><button class="primary-btn" onclick="openModal('addMoneyModal')">+ Add money</button><button class="soft-btn" onclick="showToast('Wallet statement generated')">Statement</button></div></div><div class="wallet-card"><span>ARVID PAY</span><strong>₹ 2,480</strong><small>•••• 5824</small><i>◈</i></div></div>
+        <div class="two-col wallet-cols"><div class="panel"><div class="panel-head"><h3>Wallet activity</h3><span class="muted">This month</span></div><div class="wallet-bars"><div style="height:62%"><span>Mon</span></div><div style="height:82%"><span>Tue</span></div><div style="height:48%"><span>Wed</span></div><div style="height:92%"><span>Thu</span></div><div style="height:66%"><span>Fri</span></div><div style="height:74%"><span>Sat</span></div><div style="height:38%"><span>Sun</span></div></div></div><div class="panel"><div class="panel-head"><h3>Payment methods</h3><button class="link-btn" onclick="openModal('paymentModal')">Manage</button></div><div class="payment-method"><span class="pm-icon">V</span><div><b>Visa ending 5824</b><small>Default payment method</small></div><span class="tag">Default</span></div><div class="payment-method"><span class="pm-icon upi">U</span><div><b>arvid@upi</b><small>UPI ID</small></div><span class="tag muted-tag">Active</span></div></div></div>
+      </section>
+
+      <section class="view" id="billsView">
+        <div class="section-head"><div><span class="eyebrow">BILL CENTER</span><h1>Pay every bill here.</h1><p>Keep utilities, subscriptions and essentials in one place.</p></div></div>
+        <div class="bill-grid">
+          <button class="bill-card" onclick="openBill('Electricity')"><span>⚡</span><b>Electricity</b><small>Pay your EB bill</small></button>
+          <button class="bill-card" onclick="openBill('Water')"><span>💧</span><b>Water</b><small>Municipal payments</small></button>
+          <button class="bill-card" onclick="openBill('Gas')"><span>🔥</span><b>Gas</b><small>Gas cylinder booking</small></button>
+          <button class="bill-card" onclick="openBill('Credit Card')"><span>💳</span><b>Credit Card</b><small>Clear your card dues</small></button>
+          <button class="bill-card" onclick="openBill('Insurance')"><span>🛡</span><b>Insurance</b><small>Premium payments</small></button>
+          <button class="bill-card" onclick="openBill('Subscriptions')"><span>◉</span><b>Subscriptions</b><small>Streaming & apps</small></button>
+        </div>
+        <div class="panel saved-bills"><div class="panel-head"><div><span class="eyebrow">SAVED</span><h3>Saved billers</h3></div><button class="soft-btn" onclick="openBill('New biller')">+ Add biller</button></div><div class="saved-row"><div class="saved-icon">⚡</div><div><b>TNEB • Home</b><small>Consumer no. 08•••4412</small></div><strong>₹1,240</strong><button onclick="openBill('Electricity')">Pay</button></div><div class="saved-row"><div class="saved-icon">📡</div><div><b>JioFiber • Home</b><small>Account no. 9•••2201</small></div><strong>₹899</strong><button onclick="openBill('Broadband')">Pay</button></div></div>
+      </section>
+
+      <section class="view" id="contactsView">
+        <div class="section-head"><div><span class="eyebrow">FAVORITES</span><h1>People you recharge for.</h1><p>Save trusted numbers for one-tap recharges.</p></div><button class="primary-btn" onclick="openModal('contactModal')">+ Add contact</button></div>
+        <div class="contacts-grid" id="contactsGrid"></div>
+      </section>
+
+      <section class="view" id="supportView">
+        <div class="support-hero"><span class="eyebrow">HELP CENTER</span><h1>How can we help, Arvid?</h1><p>Search our answers or talk to the support team.</p><div class="support-search"><span>⌕</span><input id="helpSearch" placeholder="Search for an issue..."></div></div>
+        <div class="faq-grid"><button onclick="toggleFaq(this)"><b>Where can I see my recharge status?</b><span>+</span><p>Open Transactions to see live status for every payment.</p></button><button onclick="toggleFaq(this)"><b>How do I add money to wallet?</b><span>+</span><p>Go to Wallet and tap Add money. Choose UPI, card or net banking.</p></button><button onclick="toggleFaq(this)"><b>What if a recharge fails?</b><span>+</span><p>Failed payments are automatically reversed according to the payment method.</p></button><button onclick="toggleFaq(this)"><b>Can I save favorite contacts?</b><span>+</span><p>Yes. Use Contacts → Add contact and save a number for quick recharge.</p></button></div>
+        <div class="support-contact panel"><div class="support-icon">✦</div><div><h3>Still need help?</h3><p>Our support specialists are online 24/7.</p></div><button class="primary-btn" onclick="showToast('Support chat connected. An agent will join shortly.')">Start live chat</button></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="paymentModal"><div class="modal"><button class="modal-close" onclick="closeModal('paymentModal')">×</button><span class="eyebrow">SECURE PAYMENT</span><h2>Complete recharge</h2><div class="payment-summary" id="paymentSummary"></div><div class="pay-options"><button class="selected">◉ Wallet <span>₹2,480</span></button><button>◈ UPI <span>arvid@upi</span></button><button>▣ Card <span>•••• 5824</span></button></div><button class="primary-btn wide" onclick="completeRecharge()">Pay now →</button></div></div>
+<div class="modal-backdrop" id="addMoneyModal"><div class="modal"><button class="modal-close" onclick="closeModal('addMoneyModal')">×</button><span class="eyebrow">WALLET</span><h2>Add money</h2><label>Amount<input id="addAmount" type="number" min="100" value="500"></label><div class="amount-chips"><button onclick="setAdd(500)">₹500</button><button onclick="setAdd(1000)">₹1,000</button><button onclick="setAdd(2000)">₹2,000</button></div><button class="primary-btn wide" onclick="addMoney()">Add to wallet</button></div></div>
+<div class="modal-backdrop" id="billModal"><div class="modal"><button class="modal-close" onclick="closeModal('billModal')">×</button><span class="eyebrow">BILL PAYMENT</span><h2 id="billTitle">Pay bill</h2><label>Consumer / account number<input id="billNumber" placeholder="Enter account number"></label><label>Amount<input id="billAmount" type="number" value="999"></label><button class="primary-btn wide" onclick="payBill()">Pay securely →</button></div></div>
+<div class="modal-backdrop" id="contactModal"><div class="modal"><button class="modal-close" onclick="closeModal('contactModal')">×</button><span class="eyebrow">NEW FAVORITE</span><h2>Add contact</h2><label>Name<input id="contactName" placeholder="e.g. Mom"></label><label>Mobile number<input id="contactNumber" inputmode="numeric" placeholder="10-digit number"></label><label>Operator<select id="contactOperator"><option>Jio</option><option>Airtel</option><option>Vi</option><option>BSNL</option></select></label><button class="primary-btn wide" onclick="addContact()">Save contact</button></div></div>
+<div class="modal-backdrop" id="profileModal"><div class="modal"><button class="modal-close" onclick="closeModal('profileModal')">×</button><div class="profile-large"><div class="avatar xl">A</div><div><span class="eyebrow">ACCOUNT</span><h2>Arvid</h2><p>Premium member • Since 2026</p></div></div><div class="profile-settings"><button onclick="showToast('Profile settings opened')">✎ Edit profile <span>→</span></button><button onclick="showToast('Security settings opened')">⌁ Security <span>→</span></button><button onclick="showToast('Signed out demo')">↪ Sign out <span>→</span></button></div></div></div>
+<div class="modal-backdrop" id="notificationModal"><div class="modal"><button class="modal-close" onclick="closeModal('notificationModal')">×</button><span class="eyebrow">INBOX</span><h2>Notifications</h2><div class="notifications"><div><b>Recharge successful</b><p>Your ₹299 Jio recharge was completed.</p><small>12 min ago</small></div><div><b>Reward unlocked</b><p>You earned 80 points from your latest recharge.</p><small>1 hour ago</small></div><div><b>Wallet reminder</b><p>Your wallet balance is below your usual level.</p><small>Yesterday</small></div></div></div></div>
+
+<div id="toast"></div>
+<script src="assets/app.js"></script>
+</body>
+</html>
