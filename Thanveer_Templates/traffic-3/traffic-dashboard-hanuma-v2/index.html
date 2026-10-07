@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlowSight Traffic Command Center — Hanuma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-logo"><span></span><span></span><span></span></div>
+    <div><b>FlowSight</b><small>Traffic Command Center</small></div>
+  </div>
+  <div class="live-badge"><i></i> LIVE NETWORK</div>
+
+  <nav>
+    <label>MONITOR</label>
+    <button class="nav active" data-page="overview"><span>⌂</span>Overview</button>
+    <button class="nav" data-page="junctions"><span>◈</span>Junctions</button>
+    <button class="nav" data-page="incidents"><span>!</span>Incidents <em id="incidentCount">4</em></button>
+    <button class="nav" data-page="routes"><span>↝</span>Routes</button>
+    <button class="nav" data-page="cameras"><span>▣</span>Cameras</button>
+    <label>INSIGHTS</label>
+    <button class="nav" data-page="analytics"><span>◒</span>Analytics</button>
+    <button class="nav" data-page="reports"><span>▤</span>Reports</button>
+    <label>SYSTEM</label>
+    <button class="nav" data-page="settings"><span>⚙</span>Settings</button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="operator"><div class="avatar">H</div><div><b>Hanuma</b><small>Network Operator</small></div><button onclick="openProfile()">•••</button></div>
+    <button class="collapse" onclick="toggleSidebar()">← Collapse sidebar</button>
+  </div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <button class="mobile-menu" onclick="mobileSidebar()">☰</button>
+  <div class="breadcrumb"><span>Operations</span><b>/</b><strong id="breadcrumb">Network Overview</strong></div>
+  <div class="top-right">
+    <span class="system"><i></i> All systems normal</span>
+    <button class="top-icon" onclick="showNotifications()">♢<sup>3</sup></button>
+    <button class="date" onclick="changeDate()">Today ▾</button>
+    <button class="theme" onclick="toggleTheme()">◐</button>
+  </div>
+</header>
+
+<section class="page" id="page"></section>
+</main>
+
+<div class="modal-bg" id="modalBg"><div class="modal" id="modal"></div></div>
+<script src="script.js"></script>
+</body>
+</html>

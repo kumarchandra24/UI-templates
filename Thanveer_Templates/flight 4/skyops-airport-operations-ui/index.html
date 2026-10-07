@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyOps — Airport Operations Control Center</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✦</div>
+        <div>
+          <strong>SkyOps</strong>
+          <span>Airport Operations</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <p class="nav-label">CONTROL</p>
+        <button class="nav-item active" data-view="overview"><span>◉</span> Overview</button>
+        <button class="nav-item" data-view="flights"><span>✈</span> Flight Board</button>
+        <button class="nav-item" data-view="gates"><span>▦</span> Gates & Stands</button>
+        <button class="nav-item" data-view="turnaround"><span>↻</span> Turnaround</button>
+        <button class="nav-item" data-view="alerts"><span>!</span> Alerts <b class="badge danger">3</b></button>
+
+        <p class="nav-label">OPERATIONS</p>
+        <button class="nav-item" data-view="team"><span>♙</span> Team</button>
+        <button class="nav-item" data-view="reports"><span>▤</span> Reports</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="status-line"><span class="live-dot"></span> Systems operational</div>
+        <div class="user-mini">
+          <div class="avatar">TD</div>
+          <div><strong>Mr. Tyler Durden</strong><span>Operations Lead</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+          <div>
+            <div class="eyebrow">Terminal 1 · Chennai International</div>
+            <h1 id="pageTitle">Operations Overview</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="clock" id="clock">--:--:--</div>
+          <button class="icon-btn" id="notifyBtn" title="Notifications">♢<span class="notification-dot"></span></button>
+          <div class="profile" id="profileBtn">
+            <div class="avatar">TD</div>
+            <div class="profile-copy"><strong>Mr. Tyler Durden</strong><span>Ops Lead</span></div>
+            <span>⌄</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="toast" class="toast"></div>
+
+        <section class="view active" id="overview">
+          <div class="hero-row">
+            <div>
+              <span class="live-pill"><i></i> LIVE OPERATIONS</span>
+              <h2>Good morning, Tyler.</h2>
+              <p>Here's what is happening across the airport right now.</p>
+            </div>
+            <button class="primary-btn" id="newIncidentBtn">＋ Log Incident</button>
+          </div>
+
+          <div class="metrics">
+            <article class="metric-card">
+              <div class="metric-icon cyan">✈</div>
+              <div><span>Flights today</span><strong>184</strong><small class="positive">↑ 6.2% vs yesterday</small></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon purple">◷</div>
+              <div><span>On-time rate</span><strong>91.8%</strong><small class="positive">↑ 2.4% this week</small></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon amber">▣</div>
+              <div><span>Active stands</span><strong id="standMetric">27 / 32</strong><small>5 available</small></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon red">!</div>
+              <div><span>Open incidents</span><strong id="incidentMetric">3</strong><small class="negative">1 critical</small></div>
+            </article>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel">
+              <div class="panel-head">
+                <div><h3>Flight activity</h3><span>Next 6 hours</span></div>
+                <button class="text-btn" data-view-link="flights">View board →</button>
+              </div>
+              <div class="chart-wrap">
+                <div class="y-labels"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div>
+                <div class="chart" aria-label="Flight activity chart">
+                  <div class="grid-lines"></div>
+                  <svg viewBox="0 0 600 210" preserveAspectRatio="none">
+                    <defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#39d9ff" stop-opacity=".28"/><stop offset="1" stop-color="#39d9ff" stop-opacity="0"/></linearGradient></defs>
+                    <path class="area" d="M0 160 C45 145 65 115 110 132 S175 85 220 112 S280 65 330 94 S390 120 430 88 S500 40 540 72 S575 55 600 35 L600 210 L0 210Z"/>
+                    <path class="line" d="M0 160 C45 145 65 115 110 132 S175 85 220 112 S280 65 330 94 S390 120 430 88 S500 40 540 72 S575 55 600 35"/>
+                  </svg>
+                  <div class="x-labels"><span>10 AM</span><span>11 AM</span><span>12 PM</span><span>1 PM</span><span>2 PM</span><span>3 PM</span><span>4 PM</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head"><div><h3>Operational alerts</h3><span>Requires attention</span></div><button class="text-btn" data-view-link="alerts">View all →</button></div>
+              <div class="alert-list" id="alertPreview"></div>
+            </article>
+          </div>
+
+          <article class="panel table-panel">
+            <div class="panel-head"><div><h3>Live flight board</h3><span>Updated automatically</span></div><button class="filter-btn" id="refreshFlights">↻ Refresh</button></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Flight</th><th>Route</th><th>ETA</th><th>Gate</th><th>Aircraft</th><th>Status</th></tr></thead>
+                <tbody id="flightPreview"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="flights">
+          <div class="section-heading"><div><span class="eyebrow">REAL-TIME</span><h2>Flight Board</h2><p>Monitor arrivals, departures and turnaround readiness.</p></div><button class="primary-btn" id="addFlightBtn">＋ Add flight</button></div>
+          <div class="toolbar"><input id="flightSearch" placeholder="Search flight, airline or route..." /><select id="statusFilter"><option value="all">All statuses</option><option>On time</option><option>Boarding</option><option>Delayed</option><option>Landed</option></select></div>
+          <article class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Flight</th><th>Airline</th><th>Route</th><th>ETA / ETD</th><th>Gate</th><th>Aircraft</th><th>Status</th></tr></thead><tbody id="flightTable"></tbody></table></div></article>
+        </section>
+
+        <section class="view" id="gates">
+          <div class="section-heading"><div><span class="eyebrow">AIRFIELD</span><h2>Gates & Stands</h2><p>Live stand allocation and readiness.</p></div><button class="primary-btn" id="autoAssignBtn">Auto-assign stand</button></div>
+          <div class="gate-grid" id="gateGrid"></div>
+        </section>
+
+        <section class="view" id="turnaround">
+          <div class="section-heading"><div><span class="eyebrow">GROUND HANDLING</span><h2>Turnaround Control</h2><p>Track every critical service before departure.</p></div></div>
+          <div class="turn-grid" id="turnGrid"></div>
+        </section>
+
+        <section class="view" id="alerts">
+          <div class="section-heading"><div><span class="eyebrow">INCIDENT MANAGEMENT</span><h2>Alerts & Incidents</h2><p>Prioritize issues and keep operations moving.</p></div><button class="primary-btn" id="newIncidentBtn2">＋ Log Incident</button></div>
+          <div class="incident-list" id="incidentList"></div>
+        </section>
+
+        <section class="view" id="team">
+          <div class="section-heading"><div><span class="eyebrow">PEOPLE</span><h2>Operations Team</h2><p>Current duty roster and operational responsibilities.</p></div></div>
+          <div class="team-grid" id="teamGrid"></div>
+        </section>
+
+        <section class="view" id="reports">
+          <div class="section-heading"><div><span class="eyebrow">INSIGHTS</span><h2>Operations Reports</h2><p>Performance snapshots for the current shift.</p></div><button class="primary-btn" id="exportBtn">↓ Export report</button></div>
+          <div class="report-grid">
+            <article class="report-card"><span>Departure punctuality</span><strong>94.2%</strong><div class="progress"><i style="width:94%"></i></div><small>Target: 90%</small></article>
+            <article class="report-card"><span>Average turnaround</span><strong>42 min</strong><div class="progress"><i style="width:72%"></i></div><small>Target: 45 min</small></article>
+            <article class="report-card"><span>Gate utilization</span><strong>84.3%</strong><div class="progress"><i style="width:84%"></i></div><small>Target: 80%</small></article>
+            <article class="report-card"><span>Baggage SLA</span><strong>97.1%</strong><div class="progress"><i style="width:97%"></i></div><small>Target: 95%</small></article>
+          </div>
+        </section>
+
+        <section class="view" id="settings">
+          <div class="section-heading"><div><span class="eyebrow">CONTROL CENTER</span><h2>Settings</h2><p>Configure your operations workspace.</p></div></div>
+          <article class="panel settings-panel">
+            <div class="setting-row"><div><strong>Live operational updates</strong><span>Automatically refresh flight and gate activity.</span></div><label class="switch"><input type="checkbox" checked><i></i></label></div>
+            <div class="setting-row"><div><strong>Critical alert sound</strong><span>Play a sound when a critical incident is raised.</span></div><label class="switch"><input type="checkbox" checked><i></i></label></div>
+            <div class="setting-row"><div><strong>Compact flight board</strong><span>Use dense rows for high-volume monitoring.</span></div><label class="switch"><input type="checkbox"><i></i></label></div>
+            <div class="setting-row"><div><strong>Operations timezone</strong><span>All times shown in local airport time.</span></div><select><option>IST — UTC +05:30</option><option>UTC</option></select></div>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
