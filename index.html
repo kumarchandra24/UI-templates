@@ -1,21 +1,37 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>UI Templates | Team Project Universe</title>
+
     <meta
         name="description"
-        content="UI Template Collection - Modern web applications created by our team."
+        content="UI Templates Team Project Universe — Team Leader, AI Projects, Frontend Templates and Thanveer Templates."
     >
 
-    <title>UI Template Collection | Team Showcase</title>
-
     <style>
-
         /* =========================================================
-           GLOBAL
+           ROOT
         ========================================================= */
+
+        :root {
+            --bg: #050816;
+            --bg-2: #090d20;
+            --card: rgba(255, 255, 255, 0.055);
+            --card-hover: rgba(255, 255, 255, 0.09);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #ffffff;
+            --muted: #a7aec7;
+            --primary: #7c5cff;
+            --secondary: #00e5ff;
+            --pink: #ff3cac;
+            --green: #00f5a0;
+            --orange: #ffb347;
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        }
 
         * {
             margin: 0;
@@ -28,34 +44,35 @@
         }
 
         body {
-            min-height: 100vh;
             font-family:
                 Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
                 "Segoe UI",
-                Roboto,
-                Arial,
                 sans-serif;
 
-            color: #ffffff;
-
+            color: var(--text);
             background:
                 radial-gradient(
                     circle at 10% 10%,
-                    rgba(124, 58, 237, 0.25),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 90% 20%,
-                    rgba(6, 182, 212, 0.20),
+                    rgba(124, 92, 255, 0.20),
                     transparent 28%
                 ),
                 radial-gradient(
+                    circle at 90% 15%,
+                    rgba(0, 229, 255, 0.14),
+                    transparent 25%
+                ),
+                radial-gradient(
                     circle at 50% 90%,
-                    rgba(236, 72, 153, 0.16),
+                    rgba(255, 60, 172, 0.10),
                     transparent 30%
                 ),
-                #050610;
+                var(--bg);
 
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
@@ -64,19 +81,8 @@
             text-decoration: none;
         }
 
-        button,
-        input {
-            font: inherit;
-        }
-
-        .container {
-            width: min(1200px, calc(100% - 36px));
-            margin: auto;
-        }
-
-
         /* =========================================================
-           ANIMATED BACKGROUND
+           BACKGROUND
         ========================================================= */
 
         .background {
@@ -84,253 +90,212 @@
             inset: 0;
             pointer-events: none;
             overflow: hidden;
-            z-index: -5;
+            z-index: -2;
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 85%
+                );
         }
 
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            animation: floating 10s ease-in-out infinite alternate;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: floatOrb 12s ease-in-out infinite;
         }
 
-        .orb-1 {
-            width: 350px;
-            height: 350px;
-            background: #7c3aed;
+        .orb.one {
+            width: 320px;
+            height: 320px;
+            background: var(--primary);
             top: 5%;
-            left: -120px;
+            left: -100px;
         }
 
-        .orb-2 {
+        .orb.two {
+            width: 260px;
+            height: 260px;
+            background: var(--secondary);
+            top: 30%;
+            right: -80px;
+            animation-delay: -4s;
+        }
+
+        .orb.three {
             width: 300px;
             height: 300px;
-            background: #06b6d4;
-            right: -100px;
-            top: 35%;
-            animation-delay: -3s;
+            background: var(--pink);
+            bottom: -100px;
+            left: 35%;
+            animation-delay: -8s;
         }
 
-        .orb-3 {
-            width: 330px;
-            height: 330px;
-            background: #ec4899;
-            bottom: -150px;
-            left: 40%;
-            animation-delay: -6s;
-        }
-
-        @keyframes floating {
-
-            0% {
-                transform: translate(0, 0) scale(1);
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translate3d(0,0,0) scale(1);
             }
 
             50% {
-                transform: translate(30px, -30px) scale(1.08);
-            }
-
-            100% {
-                transform: translate(-20px, 25px) scale(1.15);
+                transform: translate3d(40px,-30px,0) scale(1.15);
             }
         }
-
 
         /* =========================================================
-           HEADER
+           NAVIGATION
         ========================================================= */
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
-            background: rgba(5, 6, 16, 0.72);
-            backdrop-filter: blur(20px);
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .navbar {
-            min-height: 76px;
+        .nav {
+            width: min(1250px, calc(100% - 40px));
+            margin: 20px auto 0;
 
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
 
-            gap: 20px;
+            padding: 14px 18px;
+
+            background: rgba(10, 14, 35, 0.70);
+            backdrop-filter: blur(20px);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 13px;
-
-            font-weight: 800;
+            gap: 12px;
         }
 
-        .brand-icon {
-            width: 44px;
-            height: 44px;
+        .brand-logo {
+            width: 42px;
+            height: 42px;
 
             display: grid;
             place-items: center;
 
-            border-radius: 14px;
+            border-radius: 13px;
 
             background:
                 linear-gradient(
                     135deg,
-                    #7c3aed,
-                    #06b6d4
+                    var(--primary),
+                    var(--secondary)
                 );
 
             box-shadow:
-                0 10px 40px rgba(124, 58, 237, 0.45);
-
-            font-size: 21px;
-
-            animation: brandPulse 3s ease-in-out infinite;
+                0 0 25px rgba(124, 92, 255, 0.35);
         }
 
-        @keyframes brandPulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.08) rotate(3deg);
-            }
+        .brand-logo span {
+            font-size: 20px;
+            font-weight: 900;
         }
 
-        .brand-text {
-            font-size: 16px;
-        }
-
-        .brand-subtitle {
+        .brand-text strong {
             display: block;
-
-            margin-top: 3px;
-
-            color: #8f96b0;
-
-            font-size: 10px;
-
-            letter-spacing: 0.13em;
-
-            text-transform: uppercase;
+            font-size: 14px;
         }
 
-        .nav-buttons {
+        .brand-text small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .github-btn {
             display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            display: inline-flex;
-
             align-items: center;
-            justify-content: center;
-
             gap: 8px;
 
-            padding: 11px 17px;
+            padding: 10px 15px;
 
+            border: 1px solid var(--border);
             border-radius: 12px;
 
-            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255,255,255,0.04);
 
-            background: rgba(255, 255, 255, 0.05);
-
-            color: white;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            transition: 0.25s ease;
+            font-size: 13px;
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-
-            border-color: rgba(139, 92, 246, 0.55);
-
-            background: rgba(255, 255, 255, 0.09);
-
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.25);
+        .github-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.09);
         }
-
-        .btn-primary {
-            border: none;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #7c3aed,
-                    #ec4899
-                );
-
-            box-shadow:
-                0 10px 35px rgba(124, 58, 237, 0.30);
-        }
-
 
         /* =========================================================
            HERO
         ========================================================= */
 
         .hero {
-            text-align: center;
+            width: min(1200px, calc(100% - 40px));
+            margin: 100px auto 70px;
 
-            padding: 100px 0 70px;
+            text-align: center;
         }
 
-        .badge {
+        .hero-badge {
             display: inline-flex;
-
             align-items: center;
             gap: 8px;
 
             padding: 8px 15px;
 
             border-radius: 999px;
+            border: 1px solid rgba(124, 92, 255, 0.35);
 
-            background: rgba(124, 58, 237, 0.10);
+            background: rgba(124, 92, 255, 0.08);
 
-            border: 1px solid rgba(124, 58, 237, 0.30);
+            color: #cfc6ff;
 
-            color: #d8caff;
-
-            font-size: 13px;
-
+            font-size: 12px;
             font-weight: 700;
 
-            margin-bottom: 24px;
+            margin-bottom: 25px;
+
+            animation: fadeUp 0.8s ease both;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-
+        .live-dot {
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-
-            background: #34d399;
-
-            box-shadow:
-                0 0 15px #34d399;
-
-            animation: statusPulse 1.8s infinite;
+            background: var(--green);
+            box-shadow: 0 0 12px var(--green);
+            animation: pulse 1.5s infinite;
         }
 
-        @keyframes statusPulse {
-
-            0%,
-            100% {
+        @keyframes pulse {
+            0%, 100% {
                 transform: scale(1);
                 opacity: 1;
             }
@@ -342,331 +307,239 @@
         }
 
         .hero h1 {
-            max-width: 900px;
+            font-size: clamp(48px, 8vw, 105px);
+            line-height: 0.95;
+            letter-spacing: -5px;
 
+            max-width: 1050px;
             margin: auto;
 
-            font-size: clamp(
-                44px,
-                7vw,
-                82px
-            );
-
-            line-height: 0.98;
-
-            letter-spacing: -0.065em;
-        }
-
-        .gradient-text {
             background:
                 linear-gradient(
                     100deg,
-                    #ffffff,
-                    #b9a4ff,
-                    #5ee7f5,
-                    #f5a6d0
+                    #fff 10%,
+                    #a897ff 38%,
+                    #00e5ff 65%,
+                    #fff 90%
                 );
 
             -webkit-background-clip: text;
             background-clip: text;
-
             color: transparent;
 
             background-size: 250% auto;
 
-            animation: gradientMove 5s linear infinite;
+            animation:
+                fadeUp 0.9s ease both,
+                gradientMove 6s linear infinite;
         }
 
         @keyframes gradientMove {
-
             to {
                 background-position: 250% center;
             }
         }
 
-        .hero-description {
+        .hero p {
             max-width: 720px;
+            margin: 30px auto 0;
 
-            margin: 27px auto 0;
-
-            color: #9ea6c0;
+            color: var(--muted);
 
             font-size: 17px;
-
             line-height: 1.8;
+
+            animation: fadeUp 1s 0.1s ease both;
         }
 
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* =========================================================
            STATISTICS
         ========================================================= */
 
-        .statistics {
-            display: flex;
+        .stats {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto 100px;
 
-            justify-content: center;
-
-            flex-wrap: wrap;
-
-            gap: 13px;
-
-            margin-top: 38px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
 
         .stat {
-            min-width: 145px;
+            padding: 24px;
 
-            padding: 16px 20px;
+            text-align: center;
 
-            border-radius: 17px;
+            background: var(--card);
+            border: 1px solid var(--border);
 
-            background: rgba(255, 255, 255, 0.035);
+            border-radius: 20px;
 
-            border:
-                1px solid rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(18px);
 
-            backdrop-filter: blur(10px);
+            transition: 0.35s;
 
-            transition: 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::before {
+            content: "";
+            position: absolute;
+            inset: -100%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.10),
+                    transparent 55%
+                );
+
+            opacity: 0;
+            transition: 0.4s;
         }
 
         .stat:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(139, 92, 246, 0.45);
+            transform: translateY(-8px);
+            border-color: rgba(124,92,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
         }
 
-        .stat strong {
-            display: block;
-
-            font-size: 23px;
+        .stat:hover::before {
+            opacity: 1;
         }
 
-        .stat span {
-            color: #858da7;
-
-            font-size: 12px;
-        }
-
-
-        /* =========================================================
-           TOOLBAR
-        ========================================================= */
-
-        .toolbar {
-            position: sticky;
-
-            top: 76px;
-
-            z-index: 50;
-
-            padding: 18px 0;
+        .stat-number {
+            font-size: 38px;
+            font-weight: 900;
 
             background:
                 linear-gradient(
-                    to bottom,
-                    rgba(5, 6, 16, 0.96),
-                    rgba(5, 6, 16, 0.70),
-                    transparent
+                    135deg,
+                    #fff,
+                    #a897ff,
+                    #00e5ff
                 );
 
-            backdrop-filter: blur(10px);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .toolbar-content {
-            display: flex;
+        .stat-label {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
 
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main {
+            width: min(1250px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 100px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            display: flex;
             align-items: center;
-
-            gap: 13px;
-
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .search-box {
-            flex: 1 1 320px;
+        .section-number {
+            width: 48px;
+            height: 48px;
 
-            position: relative;
-        }
+            display: grid;
+            place-items: center;
 
-        .search-box span {
-            position: absolute;
-
-            left: 15px;
-
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            color: #8991aa;
-        }
-
-        .search-box input {
-            width: 100%;
-
-            padding: 14px 17px 14px 44px;
-
-            border-radius: 14px;
-
-            outline: none;
-
-            border:
-                1px solid rgba(255, 255, 255, 0.10);
-
-            background: rgba(16, 19, 36, 0.92);
-
-            color: white;
-        }
-
-        .search-box input:focus {
-            border-color:
-                rgba(139, 92, 246, 0.65);
-
-            box-shadow:
-                0 0 0 4px rgba(139, 92, 246, 0.08);
-        }
-
-        .filters {
-            display: flex;
-
-            gap: 7px;
-
-            overflow-x: auto;
-
-            scrollbar-width: none;
-        }
-
-        .filters::-webkit-scrollbar {
-            display: none;
-        }
-
-        .filter {
-            white-space: nowrap;
-
-            padding: 10px 14px;
-
-            border-radius: 999px;
-
-            border:
-                1px solid rgba(255, 255, 255, 0.09);
-
-            background: rgba(255, 255, 255, 0.04);
-
-            color: #9299b2;
-
-            cursor: pointer;
-
-            font-weight: 700;
-
-            transition: 0.2s;
-        }
-
-        .filter:hover,
-        .filter.active {
-            color: white;
+            border-radius: 15px;
 
             background:
-                rgba(124, 58, 237, 0.17);
+                linear-gradient(
+                    135deg,
+                    rgba(124,92,255,0.25),
+                    rgba(0,229,255,0.12)
+                );
 
-            border-color:
-                rgba(124, 58, 237, 0.50);
+            border: 1px solid rgba(124,92,255,0.25);
+
+            font-weight: 900;
+            color: #cfc6ff;
         }
 
-
-        /* =========================================================
-           PROJECT SECTION
-        ========================================================= */
-
-        .projects {
-            padding: 30px 0 100px;
+        .section-heading h2 {
+            font-size: clamp(25px, 4vw, 38px);
+            letter-spacing: -1.5px;
         }
 
-        .section-header {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: end;
-
-            gap: 20px;
-
-            margin-bottom: 26px;
-        }
-
-        .section-header h2 {
-            font-size: 32px;
-
-            letter-spacing: -0.04em;
-        }
-
-        .section-header p {
-            color: #8e96ae;
-
-            margin-top: 7px;
-        }
-
-        .project-count {
-            color: #c8cee2;
-
+        .section-heading p {
+            color: var(--muted);
+            margin-top: 4px;
             font-size: 13px;
-
-            font-weight: 700;
         }
 
-
-        /* =========================================================
-           PROJECT GRID
-        ========================================================= */
-
-        .project-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 20px;
+        .section-count {
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
         }
 
-
         /* =========================================================
-           PROJECT CARD
+           MEMBER HEADER
         ========================================================= */
 
-        .project-card {
-            --accent: #8b5cf6;
-
+        .member-banner {
             position: relative;
-
             overflow: hidden;
 
-            min-height: 365px;
+            margin-bottom: 25px;
+
+            padding: 25px;
 
             border-radius: 25px;
 
-            border:
-                1px solid rgba(255, 255, 255, 0.09);
-
             background:
                 linear-gradient(
-                    145deg,
-                    rgba(24, 28, 50, 0.88),
-                    rgba(10, 12, 25, 0.92)
+                    135deg,
+                    rgba(124,92,255,0.12),
+                    rgba(0,229,255,0.05)
                 );
 
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.30);
-
-            transition:
-                transform 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-
-            animation:
-                cardAppear 0.7s ease both;
+            border: 1px solid var(--border);
         }
 
-        .project-card::before {
+        .member-banner::after {
             content: "";
 
             position: absolute;
@@ -674,1671 +547,1376 @@
             width: 180px;
             height: 180px;
 
-            border-radius: 50%;
-
-            background: var(--accent);
-
-            filter: blur(75px);
-
-            opacity: 0.10;
-
-            right: -80px;
+            right: -50px;
             top: -80px;
 
-            transition: 0.4s;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124,92,255,0.25),
+                    transparent 70%
+                );
+        }
+
+        .member-role {
+            color: var(--secondary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .member-name {
+            margin-top: 6px;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .member-description {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           PROJECT GRID
+        ========================================================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+
+            min-height: 270px;
+
+            padding: 23px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid var(--border);
+
+            backdrop-filter: blur(15px);
+
+            overflow: hidden;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.45s cubic-bezier(.2,.8,.2,1),
+                border-color 0.35s,
+                box-shadow 0.35s;
+        }
+
+        .project-card::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 20%,
+                    rgba(255,255,255,0.09),
+                    transparent 80%
+                );
+
+            transform: translateX(-120%);
+            transition: 0.7s;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(120%);
         }
 
         .project-card:hover {
             transform:
-                translateY(-10px)
-                scale(1.015);
+                perspective(1000px)
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px);
 
-            border-color:
-                color-mix(
-                    in srgb,
-                    var(--accent) 55%,
-                    transparent
-                );
+            border-color: rgba(124,92,255,0.5);
 
             box-shadow:
-                0 35px 80px rgba(0, 0, 0, 0.45);
+                0 30px 70px rgba(0,0,0,0.35),
+                0 0 35px rgba(124,92,255,0.08);
         }
 
-        .project-card:hover::before {
-            opacity: 0.25;
-
-            transform: scale(1.4);
-        }
-
-        @keyframes cardAppear {
-
-            from {
-                opacity: 0;
-
-                transform:
-                    translateY(30px)
-                    scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-        }
-
-
-        /* =========================================================
-           PROJECT PREVIEW
-        ========================================================= */
-
-        .project-preview {
-            height: 150px;
-
-            padding: 18px;
-
-            position: relative;
-
-            border-bottom:
-                1px solid rgba(255, 255, 255, 0.08);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    color-mix(
-                        in srgb,
-                        var(--accent) 20%,
-                        transparent
-                    ),
-                    transparent 65%
-                );
-        }
-
-        .browser {
-            width: 100%;
-            height: 100%;
-
-            padding: 11px;
-
-            border-radius: 15px;
-
-            background:
-                rgba(3, 5, 12, 0.70);
-
-            border:
-                1px solid rgba(255, 255, 255, 0.10);
-
-            box-shadow:
-                inset 0 0 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .browser-bar {
+        .project-top {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-            gap: 5px;
-
-            margin-bottom: 10px;
-        }
-
-        .browser-bar i {
-            width: 6px;
-            height: 6px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255, 255, 255, 0.35);
-        }
-
-        .browser-layout {
-            display: grid;
-
-            grid-template-columns:
-                34% 1fr;
-
-            gap: 8px;
-
-            height: 88px;
-        }
-
-        .fake-sidebar,
-        .fake-content {
-            border-radius: 7px;
-
-            background:
-                rgba(255, 255, 255, 0.055);
-        }
-
-        .fake-content {
-            padding: 7px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 6px;
-        }
-
-        .fake-box {
-            border-radius: 5px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    color-mix(
-                        in srgb,
-                        var(--accent) 55%,
-                        transparent
-                    ),
-                    rgba(255,255,255,.04)
-                );
-
-            animation:
-                miniMove 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes miniMove {
-
-            to {
-                transform: translateY(-3px);
-            }
-        }
-
-        .project-number {
-            position: absolute;
-
-            right: 17px;
-            bottom: 11px;
-
-            font-size: 45px;
-
-            font-weight: 900;
-
-            color:
-                rgba(255, 255, 255, 0.07);
-        }
-
-
-        /* =========================================================
-           PROJECT CONTENT
-        ========================================================= */
-
-        .project-content {
-            padding: 20px;
+            margin-bottom: 25px;
         }
 
         .project-icon {
-            width: 47px;
-            height: 47px;
+            width: 50px;
+            height: 50px;
 
             display: grid;
-
             place-items: center;
 
-            border-radius: 14px;
-
-            background:
-                color-mix(
-                    in srgb,
-                    var(--accent) 16%,
-                    transparent
-                );
-
-            border:
-                1px solid
-                color-mix(
-                    in srgb,
-                    var(--accent) 38%,
-                    transparent
-                );
-
-            color: white;
+            border-radius: 15px;
 
             font-size: 22px;
 
-            margin-bottom: 15px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124,92,255,0.25),
+                    rgba(0,229,255,0.10)
+                );
+
+            border: 1px solid rgba(124,92,255,0.25);
         }
 
-        .project-content h3 {
-            font-size: 19px;
-
-            margin-bottom: 8px;
-
-            letter-spacing: -0.02em;
+        .project-number {
+            color: rgba(255,255,255,0.35);
+            font-size: 12px;
+            font-weight: 800;
         }
 
-        .project-content p {
-            color: #969db6;
+        .project-card h3 {
+            font-size: 20px;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
 
-            line-height: 1.55;
-
+        .project-card p {
+            color: var(--muted);
             font-size: 13px;
+            line-height: 1.65;
 
-            min-height: 42px;
+            min-height: 43px;
         }
 
         .project-footer {
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
 
-            gap: 8px;
-
-            margin-top: 17px;
+            margin-top: 25px;
         }
 
-        .category {
+        .project-type {
+            color: #c8c3ff;
+            font-size: 11px;
+            font-weight: 700;
+
             padding: 6px 9px;
 
-            border-radius: 999px;
+            border-radius: 8px;
 
-            background:
-                rgba(255,255,255,.05);
-
-            border:
-                1px solid
-                rgba(255,255,255,.09);
-
-            color: #c8cee1;
-
-            font-size: 11px;
-
-            font-weight: 750;
+            background: rgba(124,92,255,0.09);
+            border: 1px solid rgba(124,92,255,0.15);
         }
 
         .open-project {
-            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
 
+            font-size: 12px;
             font-weight: 800;
 
-            transition: 0.2s;
+            color: var(--secondary);
+
+            transition: 0.3s;
         }
 
-        .project-card:hover .open-project {
-            color: var(--accent);
-
-            transform: translateX(4px);
+        .open-project:hover {
+            gap: 10px;
+            color: white;
         }
-
 
         /* =========================================================
-           EMPTY SEARCH
+           LOADING
         ========================================================= */
 
-        .empty {
-            display: none;
+        .loading {
+            grid-column: 1 / -1;
 
-            padding: 70px 20px;
-
+            padding: 60px;
             text-align: center;
 
-            border:
-                1px dashed
-                rgba(255,255,255,.15);
-
+            border: 1px dashed rgba(255,255,255,0.15);
             border-radius: 20px;
 
-            color: #9098b1;
+            color: var(--muted);
         }
 
-        .empty.show {
-            display: block;
+        .loader {
+            width: 35px;
+            height: 35px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--secondary);
+
+            animation: spin 0.8s linear infinite;
         }
 
-
-        /* =========================================================
-           ABOUT
-        ========================================================= */
-
-        .about {
-            padding: 80px 0;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .about-grid {
-            display: grid;
-
-            grid-template-columns:
-                1.2fr 0.8fr;
-
-            gap: 22px;
+        .error {
+            color: #ff8cae;
         }
-
-        .panel {
-            padding: 30px;
-
-            border-radius: 25px;
-
-            background:
-                rgba(255,255,255,.035);
-
-            border:
-                1px solid
-                rgba(255,255,255,.09);
-        }
-
-        .panel h2 {
-            font-size: 27px;
-
-            margin-bottom: 13px;
-        }
-
-        .panel p {
-            color: #969db5;
-
-            line-height: 1.75;
-        }
-
-        .workflow {
-            margin-top: 20px;
-
-            display: grid;
-
-            gap: 10px;
-        }
-
-        .workflow-step {
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            padding: 12px;
-
-            border-radius: 13px;
-
-            background:
-                rgba(255,255,255,.035);
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-        }
-
-        .workflow-number {
-            width: 31px;
-            height: 31px;
-
-            display: grid;
-
-            place-items: center;
-
-            border-radius: 9px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #7c3aed,
-                    #06b6d4
-                );
-
-            font-size: 12px;
-
-            font-weight: 800;
-        }
-
 
         /* =========================================================
            FOOTER
         ========================================================= */
 
-        footer {
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
+        .footer {
+            width: min(1250px, calc(100% - 40px));
 
-            padding: 30px 0 45px;
+            margin: 80px auto 30px;
 
-            color: #858da6;
-        }
+            padding: 30px 0;
 
-        .footer-content {
+            border-top: 1px solid var(--border);
+
             display: flex;
-
-            align-items: center;
-
             justify-content: space-between;
-
             gap: 20px;
 
-            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 12px;
         }
 
-        .footer-content strong {
+        .footer strong {
             color: white;
         }
-
 
         /* =========================================================
            RESPONSIVE
         ========================================================= */
 
-        @media (max-width: 1050px) {
+        @media (max-width: 950px) {
 
-            .project-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
+            .projects {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 650px) {
 
-            .container {
-                width: calc(100% - 24px);
+            .nav {
+                width: calc(100% - 20px);
             }
 
-            .navbar {
-                min-height: 67px;
-            }
-
-            .nav-buttons .btn:first-child {
+            .github-btn span {
                 display: none;
             }
 
             .hero {
-                padding:
-                    70px 0 50px;
+                margin-top: 75px;
             }
 
-            .hero-description {
-                font-size: 15px;
+            .hero h1 {
+                letter-spacing: -3px;
             }
 
-            .toolbar {
-                top: 67px;
+            .stats {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .project-grid {
+            .projects {
                 grid-template-columns: 1fr;
             }
 
-            .section-header {
+            .section-heading {
                 align-items: flex-start;
-
                 flex-direction: column;
             }
 
-            .project-card {
-                min-height: 345px;
+            .footer {
+                flex-direction: column;
             }
         }
-
     </style>
 </head>
 
-
 <body>
 
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
 
-<!-- ============================================================
-     ANIMATED BACKGROUND
-============================================================ -->
-
-<div class="background">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-</div>
+    <div class="background">
+        <div class="grid"></div>
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+        <div class="orb three"></div>
+    </div>
 
 
-<!-- ============================================================
-     HEADER
-============================================================ -->
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
 
-<header>
+    <nav class="nav">
 
-    <div class="container navbar">
-
-        <a href="#" class="brand">
-
-            <div class="brand-icon">
-                ✦
+        <a
+            class="brand"
+            href="https://github.com/kumarchandra24/UI-templates"
+            target="_blank"
+        >
+            <div class="brand-logo">
+                <span>UI</span>
             </div>
 
             <div class="brand-text">
+                <strong>UI Templates</strong>
+                <small>Team Project Universe</small>
+            </div>
+        </a>
 
-                UI Template Collection
+        <a
+            class="github-btn"
+            href="https://github.com/kumarchandra24/UI-templates"
+            target="_blank"
+        >
+            <span>View Repository</span>
+            ↗
+        </a>
 
-                <span class="brand-subtitle">
-                    Team Showcase • 2026
-                </span>
+    </nav>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            <span class="live-dot"></span>
+            TEAM PROJECT UNIVERSE
+        </div>
+
+        <h1>
+            Building Ideas<br>
+            Into Interfaces.
+        </h1>
+
+        <p>
+            A centralized collection of projects created by our team —
+            combining AI applications, frontend experiences, UI systems
+            and innovative web projects in one place.
+        </p>
+
+    </header>
+
+
+    <!-- =========================================================
+         STATISTICS
+    ========================================================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <div
+                class="stat-number"
+                id="totalProjects"
+            >
+                —
+            </div>
+
+            <div class="stat-label">
+                Total Projects
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div
+                class="stat-number"
+                id="leaderProjects"
+            >
+                —
+            </div>
+
+            <div class="stat-label">
+                Team Leader
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div
+                class="stat-number"
+                id="memberProjects"
+            >
+                —
+            </div>
+
+            <div class="stat-label">
+                Member Projects
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div
+                class="stat-number"
+                id="contributors"
+            >
+                4
+            </div>
+
+            <div class="stat-label">
+                Contributors
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PROJECT SECTIONS
+    ========================================================= -->
+
+    <main>
+
+        <!-- TEAM LEADER -->
+
+        <section
+            class="section"
+            id="team-leader"
+        >
+
+            <div class="section-heading">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        01
+                    </div>
+
+                    <div>
+                        <h2>TEAM LEADER</h2>
+
+                        <p>
+                            Core projects and applications developed by the team leader
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="section-count"
+                    id="leaderCount"
+                >
+                    Loading...
+                </div>
 
             </div>
 
-        </a>
+
+            <div class="member-banner">
+
+                <div class="member-role">
+                    Team Leadership
+                </div>
+
+                <div class="member-name">
+                    Team Leader
+                </div>
+
+                <div class="member-description">
+                    Leading the development, architecture, UI systems and
+                    overall project direction of the team.
+                </div>
+
+            </div>
 
 
-        <div class="nav-buttons">
-
-            <a
-                href="#about"
-                class="btn"
+            <div
+                class="projects"
+                id="leaderProjectsGrid"
             >
-                About
-            </a>
+
+                <div class="loading">
+                    <div class="loader"></div>
+                    Loading Team Leader projects...
+                </div>
+
+            </div>
+
+        </section>
 
 
+        <!-- MEMBER 1 -->
+
+        <section
+            class="section"
+            id="member1"
+        >
+
+            <div class="section-heading">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        02
+                    </div>
+
+                    <div>
+                        <h2>MEMBER 1</h2>
+
+                        <p>
+                            AI Project Universe
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="section-count"
+                    id="member1Count"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="member-banner">
+
+                <div class="member-role">
+                    Member 1 • AI Development
+                </div>
+
+                <div class="member-name">
+                    AI Project Universe
+                </div>
+
+                <div class="member-description">
+                    AI-powered applications, intelligent interfaces,
+                    automation projects and experimental AI experiences.
+                </div>
+
+            </div>
+
+
+            <div
+                class="projects"
+                id="member1Projects"
+            >
+
+                <div class="loading">
+                    <div class="loader"></div>
+                    Loading AI projects...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEMBER 2 -->
+
+        <section
+            class="section"
+            id="member2"
+        >
+
+            <div class="section-heading">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        03
+                    </div>
+
+                    <div>
+                        <h2>MEMBER 2</h2>
+
+                        <p>
+                            Frontend Templates
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="section-count"
+                    id="member2Count"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="member-banner">
+
+                <div class="member-role">
+                    Member 2 • Frontend Development
+                </div>
+
+                <div class="member-name">
+                    Frontend Templates
+                </div>
+
+                <div class="member-description">
+                    Modern frontend designs, responsive interfaces,
+                    reusable UI components and beautiful web experiences.
+                </div>
+
+            </div>
+
+
+            <div
+                class="projects"
+                id="member2Projects"
+            >
+
+                <div class="loading">
+                    <div class="loader"></div>
+                    Loading frontend projects...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEMBER 3 -->
+
+        <section
+            class="section"
+            id="member3"
+        >
+
+            <div class="section-heading">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        04
+                    </div>
+
+                    <div>
+                        <h2>MEMBER 3</h2>
+
+                        <p>
+                            Thanveer Templates
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="section-count"
+                    id="member3Count"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="member-banner">
+
+                <div class="member-role">
+                    Member 3 • UI Development
+                </div>
+
+                <div class="member-name">
+                    Thanveer Templates
+                </div>
+
+                <div class="member-description">
+                    Creative website templates, application interfaces
+                    and interactive frontend experiences.
+                </div>
+
+            </div>
+
+
+            <div
+                class="projects"
+                id="member3Projects"
+            >
+
+                <div class="loading">
+                    <div class="loader"></div>
+                    Loading Thanveer projects...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="footer">
+
+        <div>
+            <strong>UI Templates Team</strong>
+            <br>
+            Building • Designing • Innovating
+        </div>
+
+        <div>
+            GitHub Repository •
             <a
                 href="https://github.com/kumarchandra24/UI-templates"
                 target="_blank"
-                rel="noopener"
-                class="btn btn-primary"
             >
-                GitHub ↗
+                kumarchandra24/UI-templates
             </a>
-
         </div>
 
-    </div>
-
-</header>
-
-
-
-<!-- ============================================================
-     HERO
-============================================================ -->
-
-<main>
-
-<section class="hero container">
-
-    <div class="badge">
-
-        <span class="status-dot"></span>
-
-        8 PROJECTS • ONE COLLECTION
-
-    </div>
-
-
-    <h1>
-
-        Modern interfaces,
-
-        <span class="gradient-text">
-            built to impress.
-        </span>
-
-    </h1>
-
-
-    <p class="hero-description">
-
-        Welcome to our UI Template Collection — a showcase of modern
-        web applications created by our team using responsive HTML,
-        CSS and JavaScript. Explore every project from one beautiful
-        central dashboard.
-
-    </p>
-
-
-    <div class="statistics">
-
-        <div class="stat">
-            <strong>08</strong>
-            <span>Projects</span>
-        </div>
-
-        <div class="stat">
-            <strong>100%</strong>
-            <span>Responsive</span>
-        </div>
-
-        <div class="stat">
-            <strong>HTML</strong>
-            <span>CSS + JavaScript</span>
-        </div>
-
-        <div class="stat">
-            <strong>∞</strong>
-            <span>Ideas</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================================================
-     SEARCH + FILTER
-============================================================ -->
-
-<section class="toolbar">
-
-    <div class="container toolbar-content">
-
-        <div class="search-box">
-
-            <span>⌕</span>
-
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search projects..."
-            >
-
-        </div>
-
-
-        <div class="filters">
-
-            <button
-                class="filter active"
-                data-filter="all"
-            >
-                All
-            </button>
-
-            <button
-                class="filter"
-                data-filter="education"
-            >
-                Education
-            </button>
-
-            <button
-                class="filter"
-                data-filter="business"
-            >
-                Business
-            </button>
-
-            <button
-                class="filter"
-                data-filter="productivity"
-            >
-                Productivity
-            </button>
-
-            <button
-                class="filter"
-                data-filter="security"
-            >
-                Security
-            </button>
-
-            <button
-                class="filter"
-                data-filter="service"
-            >
-                Services
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================================================
-     PROJECTS
-============================================================ -->
-
-<section class="projects container">
-
-
-    <div class="section-header">
-
-        <div>
-
-            <h2>
-                Project Collection
-            </h2>
-
-            <p>
-                Select any project to launch the complete website.
-            </p>
-
-        </div>
-
-
-        <span
-            class="project-count"
-            id="projectCount"
-        >
-            8 projects
-        </span>
-
-    </div>
-
-
-
-    <div
-        class="project-grid"
-        id="projectGrid"
-    >
-
-
-        <!-- =====================================================
-             01 ALGO LAB
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="education"
-            data-search="algolab algorithm algorithms coding education learning"
-            style="--accent:#22d3ee;"
-        >
-
-            <a href="./algolab/algolab/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        01
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ⌘
-                    </div>
-
-                    <h3>
-                        AlgoLab
-                    </h3>
-
-                    <p>
-                        Interactive algorithm and coding-focused interface
-                        for learning and experimentation.
-                    </p>
-
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Education
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             02 APPOINTMENT
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="service"
-            data-search="appointment booking appointments schedule service"
-            style="--accent:#8b5cf6;"
-        >
-
-            <a href="./appointment-booking-arvind-swami/appointment-booking/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        02
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ◷
-                    </div>
-
-                    <h3>
-                        Appointment Booking
-                    </h3>
-
-                    <p>
-                        A clean scheduling experience designed for booking
-                        and managing appointments.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Services
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             03 GYM
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="business"
-            data-search="gym management fitness gym members business"
-            style="--accent:#f97316;"
-        >
-
-            <a href="./Gym_Management_Arvid_Sawmi/Gym_Management_Arvid_Sawmi/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        03
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ⚡
-                    </div>
-
-                    <h3>
-                        Gym Management
-                    </h3>
-
-                    <p>
-                        Modern dashboard experience for managing gym
-                        operations, members and fitness workflows.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Business
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             04 POLICY
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="business"
-            data-search="policy management insurance business policy"
-            style="--accent:#ec4899;"
-        >
-
-            <a href="./Policy_Management_Arvid/Policy_Management_Arvid/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        04
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ◈
-                    </div>
-
-                    <h3>
-                        Policy Management
-                    </h3>
-
-                    <p>
-                        Professional policy-management interface with
-                        a polished dashboard experience.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Business
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             05 RECHARGE
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="productivity"
-            data-search="recharge mobile dth broadband wallet payment bills"
-            style="--accent:#a78bfa;"
-        >
-
-            <a href="./recharge_platform/recharge_platform_arvid/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        05
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ↯
-                    </div>
-
-                    <h3>
-                        Recharge Platform
-                    </h3>
-
-                    <p>
-                        Feature-rich recharge and bill-payment platform
-                        with wallet and transaction experiences.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Productivity
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             06 SREEKARAM
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="service"
-            data-search="sreekaram service application community"
-            style="--accent:#34d399;"
-        >
-
-            <a href="./sreekaram/sreekaram/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        06
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ✦
-                    </div>
-
-                    <h3>
-                        Sreekaram
-                    </h3>
-
-                    <p>
-                        A modern service-oriented application presented
-                        through a clean and engaging UI.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Services
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             07 STUDENT ANALYTICS
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="education"
-            data-search="student analytics students education dashboard performance"
-            style="--accent:#38bdf8;"
-        >
-
-            <a href="./student_analytics_project_v5/student_analytics_project_v5/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        07
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ▥
-                    </div>
-
-                    <h3>
-                        Student Analytics
-                    </h3>
-
-                    <p>
-                        Analytics dashboard designed to visualize
-                        student-focused information and performance.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Education
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-
-        <!-- =====================================================
-             08 URLSHIELD
-        ====================================================== -->
-
-        <article
-            class="project-card"
-            data-category="security"
-            data-search="urlshield url security cyber security safe links"
-            style="--accent:#ef4444;"
-        >
-
-            <a href="./urlshield/urlshield/index.html">
-
-                <div class="project-preview">
-
-                    <div class="browser">
-
-                        <div class="browser-bar">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-layout">
-
-                            <div class="fake-sidebar"></div>
-
-                            <div class="fake-content">
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                                <div class="fake-box"></div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="project-number">
-                        08
-                    </span>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <div class="project-icon">
-                        ⌁
-                    </div>
-
-                    <h3>
-                        URLShield
-                    </h3>
-
-                    <p>
-                        Security-focused interface for checking and
-                        presenting URL safety information.
-                    </p>
-
-                    <div class="project-footer">
-
-                        <span class="category">
-                            Security
-                        </span>
-
-                        <span class="open-project">
-                            Open Project →
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-
-    </div>
-
-
-    <div
-        class="empty"
-        id="emptyState"
-    >
-
-        <h3>
-            No projects found
-        </h3>
-
-        <p>
-            Try another project name or category.
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================================================
-     ABOUT / GITHUB WORKFLOW
-============================================================ -->
-
-<section
-    class="about"
-    id="about"
->
-
-    <div class="container about-grid">
-
-
-        <div class="panel">
-
-            <h2>
-                About Our Collection
-            </h2>
-
-            <p>
-
-                This repository contains a collection of modern web
-                UI templates created by our team as part of the
-                UI Template Collection Hackathon.
-
-                Each project has its own folder, assets and
-                implementation. This central dashboard provides
-                a simple way to explore the complete collection.
-
-            </p>
-
-        </div>
-
-
-        <div class="panel">
-
-            <h2>
-                GitHub Workflow
-            </h2>
-
-            <p>
-                Our team follows a collaborative GitHub workflow.
-            </p>
-
-
-            <div class="workflow">
-
-                <div class="workflow-step">
-                    <span class="workflow-number">1</span>
-                    <span>Fork / Clone repository</span>
-                </div>
-
-                <div class="workflow-step">
-                    <span class="workflow-number">2</span>
-                    <span>Create feature branch</span>
-                </div>
-
-                <div class="workflow-step">
-                    <span class="workflow-number">3</span>
-                    <span>Develop and commit</span>
-                </div>
-
-                <div class="workflow-step">
-                    <span class="workflow-number">4</span>
-                    <span>Push and create Pull Request</span>
-                </div>
-
-                <div class="workflow-step">
-                    <span class="workflow-number">5</span>
-                    <span>Review and merge</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-
-<footer>
-
-    <div class="container footer-content">
-
-        <div>
-
-            <strong>
-                UI Template Collection
-            </strong>
-
-            <br>
-
-            <span>
-                Built with HTML • CSS • JavaScript
-            </span>
-
-        </div>
-
-
-        <a
-            href="https://github.com/kumarchandra24/UI-templates"
-            target="_blank"
-            rel="noopener"
-            class="btn"
-        >
-            View GitHub Repository ↗
-        </a>
-
-    </div>
-
-</footer>
-
-
-
-<!-- ============================================================
-     JAVASCRIPT
-============================================================ -->
-
-<script>
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const projectCount =
-        document.getElementById("projectCount");
-
-    const emptyState =
-        document.getElementById("emptyState");
-
-    const projectCards =
-        Array.from(
-            document.querySelectorAll(".project-card")
-        );
-
-    const filterButtons =
-        Array.from(
-            document.querySelectorAll(".filter")
-        );
-
-
-    let currentFilter = "all";
-
-
-    function updateProjects() {
-
-        const searchValue =
-            searchInput.value
-                .trim()
-                .toLowerCase();
-
-        let visibleProjects = 0;
-
-
-        projectCards.forEach((card, index) => {
-
-            const category =
-                card.dataset.category;
-
-            const searchText =
-                card.dataset.search.toLowerCase();
-
-
-            const matchesFilter =
-                currentFilter === "all" ||
-                category === currentFilter;
-
-
-            const matchesSearch =
-                searchValue === "" ||
-                searchText.includes(searchValue);
-
-
-            const shouldShow =
-                matchesFilter &&
-                matchesSearch;
-
-
-            if (shouldShow) {
-
-                card.style.display = "";
-
-                card.style.animationDelay =
-                    `${index * 50}ms`;
-
-                visibleProjects++;
-
-            } else {
-
-                card.style.display = "none";
-
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           CONFIGURATION
+        ========================================================= */
+
+        const OWNER = "kumarchandra24";
+        const REPO = "UI-templates";
+        const BRANCH = "main";
+
+        const API_BASE =
+            `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
+
+        const GITHUB_BASE =
+            `https://github.com/${OWNER}/${REPO}/tree/${BRANCH}`;
+
+        /*
+         * These are the three member folders requested.
+         */
+
+        const MEMBER_FOLDERS = {
+            member1: "AI-Project-Universe",
+            member2: "Frontend_Templates",
+            member3: "Thanveer_Templates"
+        };
+
+
+        /*
+         * Team leader projects from the repository.
+         *
+         * These are automatically displayed as the first section.
+         * If you add more leader project folders later, add them here.
+         */
+
+        const TEAM_LEADER_PROJECTS = [
+            {
+                name: "Gym Management",
+                path: "Gym_Management_Arvid_Sawmi/Gym_Management_Arvid_Sawmi",
+                description: "Complete gym management application with a modern dashboard and management interface.",
+                icon: "🏋️",
+                type: "Management"
+            },
+
+            {
+                name: "Policy Management",
+                path: "Policy_Management_Arvid/Policy_Management_Arvid",
+                description: "Professional policy management application with structured workflows and administrative tools.",
+                icon: "📋",
+                type: "Management"
+            },
+
+            {
+                name: "AlgoLab",
+                path: "algolab/algolab",
+                description: "Interactive algorithm and learning experience designed for developers and students.",
+                icon: "🧠",
+                type: "Education"
+            },
+
+            {
+                name: "Appointment Booking",
+                path: "appointment-booking",
+                description: "Modern appointment scheduling interface with a clean booking experience.",
+                icon: "📅",
+                type: "Booking"
+            },
+
+            {
+                name: "Recharge Platform",
+                path: "recharge_platform/recharge_platform_arvid",
+                description: "Recharge platform interface designed for a smooth digital payment experience.",
+                icon: "⚡",
+                type: "Platform"
+            },
+
+            {
+                name: "Sreekaram",
+                path: "sreekaram/sreekaram",
+                description: "Modern application interface focused on usability, accessibility and responsive design.",
+                icon: "✨",
+                type: "Application"
+            },
+
+            {
+                name: "Student Analytics",
+                path: "student_analytics_project_v5/student_analytics_project_v5",
+                description: "Student analytics dashboard for visualizing performance and educational insights.",
+                icon: "📊",
+                type: "Analytics"
+            },
+
+            {
+                name: "URL Shield",
+                path: "urlshield/urlshield",
+                description: "Security-focused URL analysis interface designed around safe browsing workflows.",
+                icon: "🛡️",
+                type: "Security"
             }
-
-        });
-
-
-        projectCount.textContent =
-            `${visibleProjects} project${visibleProjects === 1 ? "" : "s"}`;
+        ];
 
 
-        emptyState.classList.toggle(
-            "show",
-            visibleProjects === 0
-        );
+        /* =========================================================
+           UTILITY
+        ========================================================= */
 
-    }
+        function githubFolderUrl(path) {
 
+            return `${GITHUB_BASE}/${path}`;
 
-    searchInput.addEventListener(
-        "input",
-        updateProjects
-    );
+        }
 
 
-    filterButtons.forEach(button => {
+        function githubPagesUrl(path) {
 
-        button.addEventListener(
-            "click",
-            () => {
+            return `https://${OWNER}.github.io/${REPO}/${path}/`;
 
-                filterButtons.forEach(
-                    item =>
-                        item.classList.remove("active")
+        }
+
+
+        function formatName(name) {
+
+            return name
+                .replace(/[-_]+/g, " ")
+                .replace(/\b\w/g, letter => letter.toUpperCase());
+
+        }
+
+
+        /* =========================================================
+           CREATE PROJECT CARD
+        ========================================================= */
+
+        function createProjectCard(project, index) {
+
+            const githubUrl =
+                project.githubUrl ||
+                githubFolderUrl(project.path);
+
+            const liveUrl =
+                project.liveUrl ||
+                githubPagesUrl(project.path);
+
+            const card =
+                document.createElement("article");
+
+            card.className = "project-card";
+
+            card.innerHTML = `
+
+                <div class="project-top">
+
+                    <div class="project-icon">
+                        ${project.icon || "🚀"}
+                    </div>
+
+                    <div class="project-number">
+                        PROJECT ${String(index + 1).padStart(2, "0")}
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    ${escapeHtml(project.name)}
+                </h3>
+
+
+                <p>
+                    ${escapeHtml(
+                        project.description ||
+                        "A project created as part of the UI Templates team collection."
+                    )}
+                </p>
+
+
+                <div class="project-footer">
+
+                    <span class="project-type">
+                        ${escapeHtml(project.type || "Web Project")}
+                    </span>
+
+
+                    <a
+                        class="open-project"
+                        href="${liveUrl}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open Project →
+                    </a>
+
+                </div>
+
+            `;
+
+
+            /*
+             * If GitHub Pages doesn't exist for a project,
+             * the GitHub folder remains available through
+             * right-click / source repository access.
+             */
+
+            card.addEventListener("contextmenu", () => {
+                card.dataset.github = githubUrl;
+            });
+
+
+            /* 3D mouse movement */
+
+            card.addEventListener("mousemove", event => {
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX - rect.left;
+
+                const y =
+                    event.clientY - rect.top;
+
+                const rotateX =
+                    ((y / rect.height) - 0.5) * -7;
+
+                const rotateY =
+                    ((x / rect.width) - 0.5) * 7;
+
+                card.style.transform =
+                    `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateY(-10px)
+                    scale(1.015)
+                    `;
+
+            });
+
+
+            card.addEventListener("mouseleave", () => {
+
+                card.style.transform = "";
+
+            });
+
+
+            return card;
+
+        }
+
+
+        /* =========================================================
+           ESCAPE HTML
+        ========================================================= */
+
+        function escapeHtml(value) {
+
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        /* =========================================================
+           FETCH GITHUB FOLDER
+        ========================================================= */
+
+        async function fetchGithubFolder(folder) {
+
+            const response =
+                await fetch(
+                    `${API_BASE}/${encodeURIComponent(folder)}?ref=${BRANCH}`
                 );
 
+            if (!response.ok) {
 
-                button.classList.add("active");
-
-
-                currentFilter =
-                    button.dataset.filter;
-
-
-                updateProjects();
+                throw new Error(
+                    `Unable to load ${folder}`
+                );
 
             }
-        );
 
-    });
+            return await response.json();
+
+        }
 
 
-    updateProjects();
+        /* =========================================================
+           DISCOVER PROJECTS
+        ========================================================= */
 
-</script>
+        async function discoverProjects(folder) {
 
+            try {
+
+                const items =
+                    await fetchGithubFolder(folder);
+
+                /*
+                 * Direct subdirectories are treated as projects.
+                 */
+
+                const directories =
+                    items.filter(
+                        item => item.type === "dir"
+                    );
+
+
+                const files =
+                    items.filter(
+                        item => item.type === "file"
+                    );
+
+
+                /*
+                 * If this folder itself contains index.html,
+                 * treat the folder as a single project.
+                 */
+
+                const hasIndex =
+                    files.some(
+                        file =>
+                            file.name.toLowerCase() === "index.html"
+                    );
+
+
+                if (hasIndex) {
+
+                    return [{
+                        name: formatName(
+                            folder.split("/").pop()
+                        ),
+
+                        path: folder,
+
+                        description:
+                            "A project from the UI Templates collection.",
+
+                        icon: "🚀",
+
+                        type: "Web Project"
+                    }];
+
+                }
+
+
+                /*
+                 * Otherwise each child folder becomes a project.
+                 */
+
+                return directories.map(directory => ({
+
+                    name: formatName(directory.name),
+
+                    path: directory.path,
+
+                    description:
+                        `${formatName(directory.name)} — project from the ${folder} collection.`,
+
+                    icon: "🚀",
+
+                    type: "Template"
+
+                }));
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =========================================================
+           RENDER PROJECTS
+        ========================================================= */
+
+        function renderProjects(
+            containerId,
+            projects,
+            countId
+        ) {
+
+            const container =
+                document.getElementById(containerId);
+
+            const count =
+                document.getElementById(countId);
+
+
+            container.innerHTML = "";
+
+
+            if (!projects.length) {
+
+                container.innerHTML = `
+                    <div class="loading">
+                        <div class="error">
+                            No projects found.
+                        </div>
+                    </div>
+                `;
+
+                count.textContent =
+                    "0 projects";
+
+                return;
+
+            }
+
+
+            projects.forEach(
+                (project, index) => {
+
+                    container.appendChild(
+                        createProjectCard(
+                            project,
+                            index
+                        )
+                    );
+
+                }
+            );
+
+
+            count.textContent =
+                `${projects.length} project${projects.length === 1 ? "" : "s"}`;
+
+        }
+
+
+        /* =========================================================
+           MAIN INITIALIZATION
+        ========================================================= */
+
+        async function initializeDashboard() {
+
+            /*
+             * Team Leader
+             */
+
+            renderProjects(
+                "leaderProjectsGrid",
+                TEAM_LEADER_PROJECTS,
+                "leaderCount"
+            );
+
+
+            /*
+             * Member projects
+             */
+
+            const [
+                member1,
+                member2,
+                member3
+            ] = await Promise.all([
+
+                discoverProjects(
+                    MEMBER_FOLDERS.member1
+                ),
+
+                discoverProjects(
+                    MEMBER_FOLDERS.member2
+                ),
+
+                discoverProjects(
+                    MEMBER_FOLDERS.member3
+                )
+
+            ]);
+
+
+            renderProjects(
+                "member1Projects",
+                member1,
+                "member1Count"
+            );
+
+
+            renderProjects(
+                "member2Projects",
+                member2,
+                "member2Count"
+            );
+
+
+            renderProjects(
+                "member3Projects",
+                member3,
+                "member3Count"
+            );
+
+
+            /*
+             * Statistics
+             */
+
+            const leaderTotal =
+                TEAM_LEADER_PROJECTS.length;
+
+            const memberTotal =
+                member1.length +
+                member2.length +
+                member3.length;
+
+            const total =
+                leaderTotal +
+                memberTotal;
+
+
+            animateNumber(
+                "leaderProjects",
+                leaderTotal
+            );
+
+            animateNumber(
+                "memberProjects",
+                memberTotal
+            );
+
+            animateNumber(
+                "totalProjects",
+                total
+            );
+
+        }
+
+
+        /* =========================================================
+           NUMBER ANIMATION
+        ========================================================= */
+
+        function animateNumber(
+            elementId,
+            target
+        ) {
+
+            const element =
+                document.getElementById(elementId);
+
+            const duration = 900;
+
+            const start =
+                performance.now();
+
+
+            function update(currentTime) {
+
+                const progress =
+                    Math.min(
+                        (currentTime - start) /
+                        duration,
+                        1
+                    );
+
+
+                const eased =
+                    1 -
+                    Math.pow(
+                        1 - progress,
+                        3
+                    );
+
+
+                element.textContent =
+                    Math.floor(
+                        eased * target
+                    );
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(
+                        update
+                    );
+
+                }
+
+                else {
+
+                    element.textContent =
+                        target;
+
+                }
+
+            }
+
+
+            requestAnimationFrame(update);
+
+        }
+
+
+        /* =========================================================
+           START
+        ========================================================= */
+
+        initializeDashboard();
+
+    </script>
 
 </body>
 </html>
+```
