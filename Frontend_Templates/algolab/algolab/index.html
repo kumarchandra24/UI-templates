@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlgoLab – see algorithms run</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-topic="">
+<header id="nav" class="nav"></header>
+<main>
+  <section class="hero">
+    <div>
+      <h1>Watch every algorithm run, one step at a time.</h1>
+      <p class="lead">AlgoLab turns sorting, searching, stacks, trees, graphs and dynamic programming into 3D animations that move in sync with the code. Type your own input and see exactly what happens.</p>
+      <a class="card" style="display:inline-block;padding:12px 22px" href="sorting.html">Start with Sorting</a>
+      <a class="card" style="display:inline-block;padding:12px 22px;margin-left:8px" href="quiz.html">Take the quiz</a>
+    </div>
+    <div class="ring" aria-hidden="true"><div id="ring"></div></div>
+  </section>
+  <h2>Learning path</h2>
+  <div class="cards" id="cards"></div>
+  <h2>What every lesson includes</h2>
+  <div class="cards">
+    <div class="panel"><h3>3D visual</h3><p class="note">A tilt-able board where active items lift off the surface.</p></div>
+    <div class="panel"><h3>Live code</h3><p class="note">The current line is highlighted as the animation steps.</p></div>
+    <div class="panel"><h3>Plain explanation</h3><p class="note">What it does, when to use it and its time and space cost.</p></div>
+    <div class="panel"><h3>Your own input</h3><p class="note">Change the data or commands and run it again.</p></div>
+  </div>
+</main>
+<footer id="foot"></footer>
+<script src="js/site.js"></script>
+<script>
+  /* Home page: build the topic cards and the rotating 3D bar ring. */
+  document.getElementById('cards').innerHTML = TOPICS.filter(t => !t.hidden).map((t, n) =>
+    `<a class="card" href="${t.key}.html"><em>${t.static ? 'Practice' : 'Lesson ' + (n + 1)}</em><h3>${t.title}</h3><p>${t.blurb}</p></a>`).join('');
+  const colors = ['#4fe3c1', '#ffd166', '#ff7a59', '#b69cff'];
+  document.getElementById('ring').innerHTML = Array.from({length:12}, (_, n) =>
+    `<span style="--i:${n};--h:${50 + (n * 37 % 11) * 12}px;--c:${colors[n % 4]}"></span>`).join('');
+</script>
+</body>
+</html>

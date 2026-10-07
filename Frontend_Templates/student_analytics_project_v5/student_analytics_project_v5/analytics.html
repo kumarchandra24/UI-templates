@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Analytics Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
+  <header>
+    <div class="container">
+      <h1>Analytics Dashboard</h1>
+      <p>Key performance indicators, charts, and insights for the entire class</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Home</a>
+      <a href="results.html">Student Results</a>
+      <a href="analytics.html" class="active">Analytics</a>
+      <a href="teacher.html">Teacher Dashboard</a>
+      <a href="login.html">Login</a>
+      <a href="settings.html">Settings</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="card">
+      <h2>Key Performance Indicators (KPIs)</h2>
+      <div class="grid-3">
+        <div class="stat-card">
+          <h3>Total Students</h3>
+          <div class="value" id="kpiTotalStudents">-</div>
+        </div>
+        <div class="stat-card">
+          <h3>Average Attendance</h3>
+          <div class="value" id="kpiAvgAttendance">-</div>
+        </div>
+        <div class="stat-card">
+          <h3>Overall Average %</h3>
+          <div class="value" id="kpiOverallAvg">-</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Class Performance – All Exams Combined</h2>
+      <div class="chart-container">
+        <canvas id="allExamsChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Exam-wise Class Performance (Separate Graphs)</h2>
+      <p>
+        Below are individual charts for each exam, showing marks distribution across all students.
+        This helps identify exam difficulty, class preparation, and subject-wise performance trends.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Exam 1</h3>
+          <div class="chart-container">
+            <canvas id="exam1Chart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Exam 2</h3>
+          <div class="chart-container">
+            <canvas id="exam2Chart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Exam 3</h3>
+          <div class="chart-container">
+            <canvas id="exam3Chart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Exam 4</h3>
+          <div class="chart-container">
+            <canvas id="exam4Chart"></canvas>
+          </div>
+        </div>
+        <div class="card" style="grid-column: 1 / -1;">
+          <h3>Exam 5</h3>
+          <div class="chart-container">
+            <canvas id="exam5Chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2>Distribution of Student Averages</h2>
+        <div class="chart-container">
+          <canvas id="distributionChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Top 5 Students (by Average %)</h2>
+        <ul id="top5List" style="list-style:none;padding:0;"></ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Student Analytics Project – Exam Record Submission</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

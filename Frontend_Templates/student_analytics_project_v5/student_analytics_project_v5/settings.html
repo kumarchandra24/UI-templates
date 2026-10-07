@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings - Teacher Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
+  <header>
+    <div class="container">
+      <h1>Settings – Teacher Panel</h1>
+      <p>Configure authentication, access control, and permissions for the exam result system</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Home</a>
+      <a href="results.html">Student Results</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="teacher.html">Teacher Dashboard</a>
+      <a href="login.html">Login</a>
+      <a href="settings.html" class="active">Settings</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div id="loginSection" class="card login-box">
+      <h2>Teacher Login</h2>
+      <p>Enter your credentials to access the settings panel and teacher dashboard.</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p class="form-note text-danger">
+        Note: This is a demo. In production, use secure server-side authentication.
+      </p>
+    </div>
+
+    <div id="settingsSection" style="display:none;">
+      <div class="card">
+        <h2>Teacher Controls</h2>
+        <p>
+          You are logged in as teacher. You can add or remove students here.
+          Use the Teacher Dashboard for advanced analytics. Configure authentication and permissions below.
+        </p>
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+      </div>
+
+      <div class="card">
+        <h2>Authentication & Access Settings</h2>
+        <p>
+          Configure how students and teachers access results. These settings simulate a real exam portal configuration.
+        </p>
+
+        <div class="form-group">
+          <label for="authMode">Authentication Mode</label>
+          <select id="authMode">
+            <option value="password">Password Only (Teacher)</option>
+            <option value="admission_dob">Admission No + Date of Birth</option>
+            <option value="roll_dob">Roll No + Date of Birth</option>
+          </select>
+          <p class="form-note">
+            Choose how students authenticate to view their results.
+          </p>
+        </div>
+
+        <div class="toggle-group">
+          <span class="toggle-label">Public Access (by Admission/Roll)</span>
+          <div id="publicAccessToggle" class="toggle-switch"></div>
+        </div>
+        <p class="form-note">
+          If enabled, students can view results using only admission or roll number (no DOB).
+        </p>
+
+        <div class="toggle-group">
+          <span class="toggle-label">Allow Download (PDF)</span>
+          <div id="allowDownloadToggle" class="toggle-switch"></div>
+        </div>
+        <p class="form-note">
+          Enable or disable downloading of scorecards as PDF files.
+        </p>
+
+        <div class="toggle-group">
+          <span class="toggle-label">Allow Print</span>
+          <div id="allowPrintToggle" class="toggle-switch"></div>
+        </div>
+        <p class="form-note">
+          Enable or disable direct printing of scorecards.
+        </p>
+
+        <button id="saveSettingsBtn" class="btn btn-secondary">Save Settings</button>
+      </div>
+
+      <div class="card">
+        <h2>All Students</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Admission No</th>
+                <th>Attendance</th>
+                <th>Average %</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Add New Student</h2>
+        <form id="addStudentForm">
+          <div class="form-group">
+            <label for="newName">Student Name</label>
+            <input type="text" id="newName" required />
+          </div>
+          <div class="form-group">
+            <label for="newRoll">Roll No</label>
+            <input type="text" id="newRoll" required />
+          </div>
+          <div class="form-group">
+            <label for="newAdmission">Admission No</label>
+            <input type="text" id="newAdmission" required />
+          </div>
+          <div class="form-group">
+            <label for="newDob">Date of Birth</label>
+            <input type="date" id="newDob" required />
+          </div>
+          <div class="form-group">
+            <label for="newAttendance">Attendance (%)</label>
+            <input type="number" id="newAttendance" min="0" max="100" required />
+          </div>
+          <div class="form-group">
+            <label for="newBaseMarks">Base Marks (for Exam 1, others auto-generated)</label>
+            <input type="number" id="newBaseMarks" min="0" max="100" required />
+          </div>
+          <button type="submit" class="btn btn-secondary">Add Student</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Student Analytics Project – Exam Record Submission</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (!isTeacherLoggedIn()) {
+      document.getElementById("loginSection").style.display = "block";
+      document.getElementById("settingsSection").style.display = "none";
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const result = loginTeacher(username, password);
+        if (result.success) {
+          window.location.reload();
+        } else {
+          alert(result.message);
+        }
+      });
+      throw new Error("Not authenticated");
+    }
+  </script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help – AlgoLab</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-topic="help">
+<header id="nav" class="nav"></header>
+<main>
+<h1>Help &amp; FAQ</h1>
+<p class="lead">How to use AlgoLab and the ideas behind it.</p>
+<div class="panel">
+<details open><summary>How do I run a visualization?</summary><p>Open a topic, pick an algorithm tab, press Play (or Step to move one frame at a time). Change the input box and press Run to use your own data, or press Random where it appears.</p></details>
+<details><summary>What do the colours mean?</summary><p>Yellow: items being compared or visited. Coral: items that were swapped or changed. Violet: a selected item, pivot or an item waiting in a queue. Mint: finished or found. Faded: ruled out.</p></details>
+<details><summary>How do I rotate the 3D view?</summary><p>Drag with the mouse or a finger across the dark stage. The board tilts so you can see depth; it does not change the algorithm.</p></details>
+<details><summary>What input formats are accepted?</summary><p>Arrays: 1–14 whole numbers separated by commas (0–999). Stack/queue and linked list: commands separated by commas, such as push 5, pop. Trees: level-order values with - for an empty child. Graphs: edges like 0-1, 0-2. Error messages tell you what to fix.</p></details>
+<details><summary>Why is the code shown in Python style?</summary><p>Python reads almost like pseudocode, so the highlighted line is easy to follow. The same logic applies in Java, C++ or JavaScript.</p></details>
+<details><summary>What do O(n) and O(log n) mean?</summary><p>They describe how the work grows with input size n. O(1) is constant, O(log n) grows very slowly (halving), O(n) grows in step with the input, O(n log n) is typical for good sorting, O(n²) grows quickly, and O(2ⁿ) explodes.</p></details>
+<details><summary>Which order should I learn in?</summary><p>Follow the navigation order: Sorting, Searching, Stack &amp; Queue, Linked List, Binary Tree, Graph, Recursion &amp; DP, Problem Solver, then the Quiz.</p></details>
+<details><summary>Does it need internet?</summary><p>No. Open index.html in any modern browser. There are no libraries or external requests.</p></details>
+</div>
+<div class="panel"><h2>Glossary</h2><p><strong>Pivot:</strong> the value quick sort partitions around. <strong>Stable sort:</strong> equal values keep their original order. <strong>Memoization:</strong> saving results of function calls. <strong>Traversal:</strong> visiting every node in a defined order. <strong>BFS / DFS:</strong> breadth-first / depth-first search.</p></div>
+</main>
+<footer id="foot"></footer>
+<script src="js/site.js"></script>
+</body>
+</html>

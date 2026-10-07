@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sreekaram - Sign in</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/data.js"></script>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class="card auth">
+    <h2 class="grad" id="t">Login</h2>
+    <form id="f">
+      <div id="nm" hidden><label>Name</label><input id="name"></div>
+      <label>Email</label><input id="email" type="email" required>
+      <label>Password</label><input id="pw" type="password" required>
+      <button class="btn" style="width:100%">Continue</button>
+    </form>
+    <p id="msg" style="color:#f87171;margin-top:10px"></p>
+    <p style="margin-top:12px"><a href="#" id="sw" style="color:var(--mute)">Create an account</a> · <a href="index.html" style="color:var(--mute)">Home</a></p>
+  </div>
+  <script>
+    let signup = location.search.includes("signup");
+    const $ = (id) => document.getElementById(id);
+    function mode() {
+      $("t").textContent = signup ? "Sign up" : "Login";
+      $("nm").hidden = !signup;
+      $("sw").textContent = signup ? "I have an account" : "Create an account";
+    }
+    $("sw").onclick = (e) => { e.preventDefault(); signup = !signup; mode(); };
+    mode();
+    $("f").onsubmit = (e) => {
+      e.preventDefault();
+      const email = $("email").value.trim().toLowerCase(), pw = $("pw").value;
+      let u;
+      if (signup) {
+        u = { id: 100, name: $("name").value || "New User", email, password: pw, plan: "Starter", color: "#f59e0b",
+          features: ["dashboard", "onboarding", "help", "docs", "calendar", "settings"], revenue: 0, visitors: 0, tasks: 0 };
+      } else {
+        u = SK_USERS.find((x) => x.email === email && x.password === pw);
+        if (!u) { $("msg").textContent = "Invalid email or password."; return; }
+      }
+      try { localStorage.setItem("sk_user", JSON.stringify(u)); } catch (err) {}
+      location.href = "app.html";
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="assets/scene.js"></script>
+  <script>skScene(document.getElementById("bg"), 11);</script>
+</body>
+</html>

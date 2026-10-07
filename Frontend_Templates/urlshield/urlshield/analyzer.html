@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>URLShield — URL Analyzer</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+<div id="nav"></div>
+<main class="wrap">
+  <div class="page-head"><h1>URL Analyzer</h1><p>Paste a link to see its risk score, verdict and the exact reasons. Try your own links or pick a sample.</p></div>
+  <div class="card" style="position:relative">
+    <form class="scanbar" id="f" autocomplete="off" style="max-width:none;background:var(--ink2)">
+      <input id="u" type="text" placeholder="https://example.com/login" aria-label="Link to analyze" autofocus>
+      <button class="btn primary" type="submit">Analyze</button>
+    </form>
+    <div class="err" id="err" role="alert"></div>
+    <div class="chips" id="chips"><span style="color:var(--muted);font-size:.85rem">Samples:</span></div>
+    <div class="scanning" id="scanning"><div class="spin"></div><span id="stage">Reading URL structure…</span></div>
+    <div class="scan-line"></div>
+  </div>
+
+  <div class="result" id="res">
+    <div class="card"><div class="verdict-card">
+      <div class="gauge"><svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="bar" id="bar" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg>
+        <div class="num"><b id="score">0</b><span>risk score / 100</span></div></div>
+      <div>
+        <span id="vbadge"></span>
+        <div class="verdict-title" id="vtitle"></div>
+        <p id="vsum" style="color:var(--muted)"></p>
+        <div class="shown-url" id="vurl"></div>
+      </div>
+    </div></div>
+
+    <div class="card" style="margin-top:20px"><h3>URL details</h3><div class="facts" id="facts"></div></div>
+    <div class="grid2" style="margin-top:20px">
+      <div class="card"><h3>Why it was flagged</h3><ul class="ind" id="flags"></ul></div>
+      <div class="card"><h3>What looks fine</h3><ul class="ind" id="goods"></ul>
+        <p class="note">Domain age, WHOIS and live redirect chains need a server-side lookup, so this offline demo shows only what can be proven from the address itself.</p></div>
+    </div>
+  </div>
+</main>
+<div id="foot"></div>
+<script src="js/engine.js"></script>
+<script src="js/dataset.js"></script>
+<script src="js/app.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const pick = (v,n) => URL_DATASET.filter(d=>d.label===v).slice(-n);
+[['s','safe',2],['w','suspicious',2],['p','phishing',3]].forEach(([c,v,n]) => pick(v,n).forEach(d => {
+  const b = document.createElement('button'); b.type='button'; b.className='chip '+c; b.textContent=d.url.replace(/^https?:\/\//,'').slice(0,34); b.title=d.url;
+  b.onclick = () => { $('u').value = d.url; run(); }; $('chips').appendChild(b); }));
+
+const stages = ['Reading URL structure…','Extracting features…','Checking brand look-alikes…','Scoring risk…'];
+let busy = false;
+function run() {
+  if (busy) return;
+  const val = $('u').value.trim(); $('err').textContent='';
+  if (!val) { $('err').textContent = 'Paste a link first.'; return; }
+  const r = URLShield.analyze(val);
+  if (!r.valid) { $('err').textContent = r.error; $('res').classList.remove('show'); return; }
+  busy = true; $('res').classList.remove('show'); $('scanning').classList.add('show');
+  let i = 0; $('stage').textContent = stages[0];
+  const iv = setInterval(() => { i++; if (i < stages.length) $('stage').textContent = stages[i]; }, 260);
+  setTimeout(() => { clearInterval(iv); $('scanning').classList.remove('show'); show(r); busy = false; }, 1100);
+}
+const COL = {safe:'#2DD4A0',suspicious:'#FFC247',phishing:'#FF4D6A'};
+const SUM = {
+  safe:'No meaningful phishing indicators were found in this address.',
+  suspicious:'Several warning signs were found. Do not enter passwords or payment details unless you can confirm the site through another route.',
+  phishing:'This address matches common phishing patterns. Do not open it or enter any information.'};
+function fact(k, v, cls='') { return `<div class="fact"><small>${k}</small><b class="${cls}">${esc(v)}</b></div>`; }
+function show(r) {
+  History_.add(r);
+  $('res').classList.add('show');
+  $('vbadge').innerHTML = badge(r.verdict);
+  $('vtitle').className = 'verdict-title ' + r.verdict;
+  $('vtitle').textContent = VEMOJI[r.verdict] + ' ' + (r.verdict==='safe'?'Legitimate / Safe':VLABEL[r.verdict]);
+  $('vsum').textContent = SUM[r.verdict] + ' Model confidence: ' + r.confidence + '%.';
+  $('vurl').textContent = r.url;
+  const bar = $('bar'); bar.style.stroke = COL[r.verdict]; bar.style.strokeDashoffset = 326.7;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ bar.style.strokeDashoffset = 326.7*(1-r.score/100); }));
+  countUp($('score'), r.score, 1200);
+  $('facts').innerHTML = [
+    fact('Protocol / HTTPS', r.https?'HTTPS — encrypted':'HTTP — not encrypted', r.https?'ok':'no'),
+    fact('Registered domain', r.domain),
+    fact('Host type', r.isIP?'Raw IP address':'Domain name', r.isIP?'no':'ok'),
+    fact('Top-level domain', '.'+r.tld, URLShield.RISKY_TLDS.includes(r.tld)?'mid':''),
+    fact('Subdomain levels', r.subdomains.length ? r.subdomains.length+' ('+r.subdomains.join('.')+')' : 'None'),
+    fact('URL length', r.length+' characters', r.length>90?'no':r.length>60?'mid':'ok'),
+    fact('Hyphens in domain', String(r.hyphens), r.hyphens>=2?'no':''),
+    fact('Suspicious keywords', r.keywords.length ? r.keywords.join(', ') : 'None found', r.keywords.length?'mid':'ok'),
+    fact('Brand impersonation', r.impersonates ? 'Imitates '+r.impersonates : 'None detected', r.impersonates?'no':'ok'),
+    fact('Redirect hints', r.redirectHints ? 'Shortener or redirect parameter' : 'None in the address', r.redirectHints?'mid':'ok'),
+    fact('Allowlisted domain', r.trusted?'Yes':'No', r.trusted?'ok':''),
+    fact('Domain age', 'Needs live WHOIS lookup')
+  ].join('');
+  $('flags').innerHTML = r.flags.length ? r.flags.map(f=>`<li><span class="w">+${f.w}</span><span>${esc(f.text)}</span></li>`).join('') : '<li class="good"><span class="w">0</span><span>No indicators were triggered.</span></li>';
+  $('goods').innerHTML = r.good.map(g=>`<li class="good"><span class="w">✓</span><span>${esc(g)}</span></li>`).join('');
+  $('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('f').addEventListener('submit', e => { e.preventDefault(); run(); });
+const q = new URLSearchParams(location.search).get('url'); if (q) { $('u').value = q; run(); }
+</script>
+</body></html>
