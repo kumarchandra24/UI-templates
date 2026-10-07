@@ -2,1920 +2,2605 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>UI Templates | Team Project Universe</title>
-
-    <meta
-        name="description"
-        content="UI Templates Team Project Universe — Team Leader, AI Projects, Frontend Templates and Thanveer Templates."
-    >
-
-    <style>
-        /* =========================================================
-           ROOT
-        ========================================================= */
-
-        :root {
-            --bg: #050816;
-            --bg-2: #090d20;
-            --card: rgba(255, 255, 255, 0.055);
-            --card-hover: rgba(255, 255, 255, 0.09);
-            --border: rgba(255, 255, 255, 0.12);
-            --text: #ffffff;
-            --muted: #a7aec7;
-            --primary: #7c5cff;
-            --secondary: #00e5ff;
-            --pink: #ff3cac;
-            --green: #00f5a0;
-            --orange: #ffb347;
-            --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family:
-                Inter,
-                ui-sans-serif,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
-            color: var(--text);
-            background:
-                radial-gradient(
-                    circle at 10% 10%,
-                    rgba(124, 92, 255, 0.20),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 90% 15%,
-                    rgba(0, 229, 255, 0.14),
-                    transparent 25%
-                ),
-                radial-gradient(
-                    circle at 50% 90%,
-                    rgba(255, 60, 172, 0.10),
-                    transparent 30%
-                ),
-                var(--bg);
-
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* =========================================================
-           BACKGROUND
-        ========================================================= */
-
-        .background {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -2;
-        }
-
-        .grid {
-            position: absolute;
-            inset: 0;
-
-            background-image:
-                linear-gradient(
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                );
-
-            background-size: 55px 55px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black,
-                    transparent 85%
-                );
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.35;
-            animation: floatOrb 12s ease-in-out infinite;
-        }
-
-        .orb.one {
-            width: 320px;
-            height: 320px;
-            background: var(--primary);
-            top: 5%;
-            left: -100px;
-        }
-
-        .orb.two {
-            width: 260px;
-            height: 260px;
-            background: var(--secondary);
-            top: 30%;
-            right: -80px;
-            animation-delay: -4s;
-        }
-
-        .orb.three {
-            width: 300px;
-            height: 300px;
-            background: var(--pink);
-            bottom: -100px;
-            left: 35%;
-            animation-delay: -8s;
-        }
-
-        @keyframes floatOrb {
-            0%, 100% {
-                transform: translate3d(0,0,0) scale(1);
-            }
-
-            50% {
-                transform: translate3d(40px,-30px,0) scale(1.15);
-            }
-        }
-
-        /* =========================================================
-           NAVIGATION
-        ========================================================= */
-
-        .nav {
-            width: min(1250px, calc(100% - 40px));
-            margin: 20px auto 0;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 14px 18px;
-
-            background: rgba(10, 14, 35, 0.70);
-            backdrop-filter: blur(20px);
-
-            border: 1px solid var(--border);
-            border-radius: 20px;
-
-            position: sticky;
-            top: 15px;
-            z-index: 100;
-
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-logo {
-            width: 42px;
-            height: 42px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 13px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--secondary)
-                );
-
-            box-shadow:
-                0 0 25px rgba(124, 92, 255, 0.35);
-        }
-
-        .brand-logo span {
-            font-size: 20px;
-            font-weight: 900;
-        }
-
-        .brand-text strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .brand-text small {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .github-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 10px 15px;
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            background: rgba(255,255,255,0.04);
-
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .github-btn:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.09);
-        }
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-            width: min(1200px, calc(100% - 40px));
-            margin: 100px auto 70px;
-
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 8px 15px;
-
-            border-radius: 999px;
-            border: 1px solid rgba(124, 92, 255, 0.35);
-
-            background: rgba(124, 92, 255, 0.08);
-
-            color: #cfc6ff;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            margin-bottom: 25px;
-
-            animation: fadeUp 0.8s ease both;
-        }
-
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 12px var(--green);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.5);
-                opacity: 0.55;
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 105px);
-            line-height: 0.95;
-            letter-spacing: -5px;
-
-            max-width: 1050px;
-            margin: auto;
-
-            background:
-                linear-gradient(
-                    100deg,
-                    #fff 10%,
-                    #a897ff 38%,
-                    #00e5ff 65%,
-                    #fff 90%
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-
-            background-size: 250% auto;
-
-            animation:
-                fadeUp 0.9s ease both,
-                gradientMove 6s linear infinite;
-        }
-
-        @keyframes gradientMove {
-            to {
-                background-position: 250% center;
-            }
-        }
-
-        .hero p {
-            max-width: 720px;
-            margin: 30px auto 0;
-
-            color: var(--muted);
-
-            font-size: 17px;
-            line-height: 1.8;
-
-            animation: fadeUp 1s 0.1s ease both;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* =========================================================
-           STATISTICS
-        ========================================================= */
-
-        .stats {
-            width: min(1100px, calc(100% - 40px));
-            margin: 0 auto 100px;
-
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        .stat {
-            padding: 24px;
-
-            text-align: center;
-
-            background: var(--card);
-            border: 1px solid var(--border);
-
-            border-radius: 20px;
-
-            backdrop-filter: blur(18px);
-
-            transition: 0.35s;
-
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat::before {
-            content: "";
-            position: absolute;
-            inset: -100%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255,255,255,0.10),
-                    transparent 55%
-                );
-
-            opacity: 0;
-            transition: 0.4s;
-        }
-
-        .stat:hover {
-            transform: translateY(-8px);
-            border-color: rgba(124,92,255,0.5);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-        }
-
-        .stat:hover::before {
-            opacity: 1;
-        }
-
-        .stat-number {
-            font-size: 38px;
-            font-weight: 900;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff,
-                    #a897ff,
-                    #00e5ff
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .stat-label {
-            margin-top: 5px;
-            color: var(--muted);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* =========================================================
-           MAIN
-        ========================================================= */
-
-        main {
-            width: min(1250px, calc(100% - 40px));
-            margin: auto;
-        }
-
-        .section {
-            margin-bottom: 100px;
-            scroll-margin-top: 100px;
-        }
-
-        .section-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-
-            gap: 20px;
-
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-number {
-            width: 48px;
-            height: 48px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 15px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(124,92,255,0.25),
-                    rgba(0,229,255,0.12)
-                );
-
-            border: 1px solid rgba(124,92,255,0.25);
-
-            font-weight: 900;
-            color: #cfc6ff;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(25px, 4vw, 38px);
-            letter-spacing: -1.5px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            margin-top: 4px;
-            font-size: 13px;
-        }
-
-        .section-count {
-            color: var(--muted);
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        /* =========================================================
-           MEMBER HEADER
-        ========================================================= */
-
-        .member-banner {
-            position: relative;
-            overflow: hidden;
-
-            margin-bottom: 25px;
-
-            padding: 25px;
-
-            border-radius: 25px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(124,92,255,0.12),
-                    rgba(0,229,255,0.05)
-                );
-
-            border: 1px solid var(--border);
-        }
-
-        .member-banner::after {
-            content: "";
-
-            position: absolute;
-
-            width: 180px;
-            height: 180px;
-
-            right: -50px;
-            top: -80px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(124,92,255,0.25),
-                    transparent 70%
-                );
-        }
-
-        .member-role {
-            color: var(--secondary);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-        }
-
-        .member-name {
-            margin-top: 6px;
-            font-size: 24px;
-            font-weight: 900;
-        }
-
-        .member-description {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* =========================================================
-           PROJECT GRID
-        ========================================================= */
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .project-card {
-            position: relative;
-
-            min-height: 270px;
-
-            padding: 23px;
-
-            border-radius: 24px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.075),
-                    rgba(255,255,255,0.025)
-                );
-
-            border: 1px solid var(--border);
-
-            backdrop-filter: blur(15px);
-
-            overflow: hidden;
-
-            transform-style: preserve-3d;
-
-            transition:
-                transform 0.45s cubic-bezier(.2,.8,.2,1),
-                border-color 0.35s,
-                box-shadow 0.35s;
-        }
-
-        .project-card::before {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    120deg,
-                    transparent 20%,
-                    rgba(255,255,255,0.09),
-                    transparent 80%
-                );
-
-            transform: translateX(-120%);
-            transition: 0.7s;
-        }
-
-        .project-card:hover::before {
-            transform: translateX(120%);
-        }
-
-        .project-card:hover {
-            transform:
-                perspective(1000px)
-                rotateX(3deg)
-                rotateY(-4deg)
-                translateY(-10px);
-
-            border-color: rgba(124,92,255,0.5);
-
-            box-shadow:
-                0 30px 70px rgba(0,0,0,0.35),
-                0 0 35px rgba(124,92,255,0.08);
-        }
-
-        .project-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-bottom: 25px;
-        }
-
-        .project-icon {
-            width: 50px;
-            height: 50px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 15px;
-
-            font-size: 22px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(124,92,255,0.25),
-                    rgba(0,229,255,0.10)
-                );
-
-            border: 1px solid rgba(124,92,255,0.25);
-        }
-
-        .project-number {
-            color: rgba(255,255,255,0.35);
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .project-card h3 {
-            font-size: 20px;
-            line-height: 1.25;
-            margin-bottom: 10px;
-        }
-
-        .project-card p {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.65;
-
-            min-height: 43px;
-        }
-
-        .project-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-top: 25px;
-        }
-
-        .project-type {
-            color: #c8c3ff;
-            font-size: 11px;
-            font-weight: 700;
-
-            padding: 6px 9px;
-
-            border-radius: 8px;
-
-            background: rgba(124,92,255,0.09);
-            border: 1px solid rgba(124,92,255,0.15);
-        }
-
-        .open-project {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-
-            font-size: 12px;
-            font-weight: 800;
-
-            color: var(--secondary);
-
-            transition: 0.3s;
-        }
-
-        .open-project:hover {
-            gap: 10px;
-            color: white;
-        }
-
-        /* =========================================================
-           LOADING
-        ========================================================= */
-
-        .loading {
-            grid-column: 1 / -1;
-
-            padding: 60px;
-            text-align: center;
-
-            border: 1px dashed rgba(255,255,255,0.15);
-            border-radius: 20px;
-
-            color: var(--muted);
-        }
-
-        .loader {
-            width: 35px;
-            height: 35px;
-
-            margin: 0 auto 15px;
-
-            border-radius: 50%;
-
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: var(--secondary);
-
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .error {
-            color: #ff8cae;
-        }
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        .footer {
-            width: min(1250px, calc(100% - 40px));
-
-            margin: 80px auto 30px;
-
-            padding: 30px 0;
-
-            border-top: 1px solid var(--border);
-
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .footer strong {
-            color: white;
-        }
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 950px) {
-
-            .projects {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 650px) {
-
-            .nav {
-                width: calc(100% - 20px);
-            }
-
-            .github-btn span {
-                display: none;
-            }
-
-            .hero {
-                margin-top: 75px;
-            }
-
-            .hero h1 {
-                letter-spacing: -3px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
-            .section-heading {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .footer {
-                flex-direction: column;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UI Templates | Team Project Universe</title>
+
+<meta
+    name="description"
+    content="UI Templates Team Project Universe — 16 projects across Team Leader, AI, Frontend and Thanveer teams."
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(124, 92, 255, .20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(0, 229, 255, .14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255, 60, 172, .12),
+            transparent 35%
+        ),
+        #050816;
+
+    color: #fff;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --primary: #7c5cff;
+    --secondary: #00e5ff;
+    --pink: #ff3cac;
+    --green: #00f5a0;
+    --orange: #ffb347;
+
+    --text: #ffffff;
+    --muted: #a9b0c8;
+
+    --border:
+        rgba(255,255,255,.12);
+
+    --glass:
+        rgba(255,255,255,.055);
+
+    --shadow:
+        0 30px 80px rgba(0,0,0,.45);
+}
+
+
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -5;
+}
+
+.grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+.orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: .30;
+
+    animation:
+        floatingOrb 14s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+
+    background: var(--primary);
+
+    left: -150px;
+    top: 50px;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+
+    background: var(--secondary);
+
+    right: -130px;
+    top: 350px;
+
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+
+    background: var(--pink);
+
+    left: 40%;
+    bottom: -180px;
+
+    animation-delay: -9s;
+}
+
+@keyframes floatingOrb {
+
+    0%,100% {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(50px,-40px,0)
+            scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    width:
+        min(
+            1250px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        20px auto 0;
+
+    padding:
+        13px 16px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    background:
+        rgba(7,10,28,.72);
+
+    backdrop-filter:
+        blur(22px);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    position:
+        sticky;
+
+    top:
+        15px;
+
+    z-index:
+        100;
+
+    box-shadow:
+        0 15px 60px rgba(0,0,0,.25);
+}
+
+.logo {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+}
+
+.logo-box {
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(124,92,255,.35);
+}
+
+.logo-box span {
+
+    font-weight:
+        900;
+
+    font-size:
+        17px;
+}
+
+.logo-title {
+
+    font-weight:
+        800;
+
+    font-size:
+        14px;
+}
+
+.logo-subtitle {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    margin-top:
+        2px;
+}
+
+.github-link {
+
+    padding:
+        10px 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    font-size:
+        12px;
+
+    transition:
+        .3s;
+}
+
+.github-link:hover {
+
+    background:
+        rgba(255,255,255,.10);
+
+    border-color:
+        rgba(255,255,255,.30);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    width:
+        min(
+            1150px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        110px auto 80px;
+
+    text-align:
+        center;
+}
+
+.hero-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        8px 16px;
+
+    border-radius:
+        100px;
+
+    border:
+        1px solid
+        rgba(124,92,255,.35);
+
+    background:
+        rgba(124,92,255,.09);
+
+    color:
+        #cfc7ff;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1px;
+
+    margin-bottom:
+        25px;
+
+    animation:
+        fadeUp .8s ease both;
+}
+
+.live-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 15px
+        var(--green);
+
+    animation:
+        pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.6);
+
+        opacity:
+            .5;
+    }
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            48px,
+            8vw,
+            100px
+        );
+
+    line-height:
+        .94;
+
+    letter-spacing:
+        -5px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #fff,
+            #9f8dff,
+            #00e5ff,
+            #ff72c4,
+            #fff
+        );
+
+    background-size:
+        300% auto;
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    color:
+        transparent;
+
+    animation:
+        gradientMove 7s linear infinite,
+        fadeUp 1s ease both;
+}
+
+@keyframes gradientMove {
+
+    to {
+        background-position:
+            300% center;
+    }
+}
+
+.hero p {
+
+    max-width:
+        720px;
+
+    margin:
+        28px auto 0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.8;
+
+    animation:
+        fadeUp 1s .15s ease both;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.statistics {
+
+    width:
+        min(
+            1100px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        0 auto 100px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        16px;
+}
+
+.stat {
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(18px);
+
+    transition:
+        .35s;
+}
+
+.stat:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(124,92,255,.5);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.3);
+}
+
+.stat-number {
+
+    font-size:
+        40px;
+
+    font-weight:
+        900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #9c8cff,
+            #00e5ff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    color:
+        transparent;
+}
+
+.stat-label {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+    margin-top:
+        5px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+
+    width:
+        min(
+            1250px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        auto;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section {
+
+    margin-bottom:
+        105px;
+
+    scroll-margin-top:
+        100px;
+}
+
+.section-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        25px;
+}
+
+.section-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+}
+
+.section-number {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.25),
+            rgba(0,229,255,.10)
+        );
+
+    border:
+        1px solid
+        rgba(124,92,255,.3);
+
+    color:
+        #cfc7ff;
+
+    font-weight:
+        900;
+}
+
+.section-heading h2 {
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            37px
+        );
+
+    letter-spacing:
+        -1.5px;
+}
+
+.section-heading p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    margin-top:
+        5px;
+}
+
+.section-count {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================================
+   MEMBER BANNER
+========================================================= */
+
+.member-banner {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        25px;
+
+    margin-bottom:
+        22px;
+
+    border-radius:
+        23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.12),
+            rgba(0,229,255,.04)
+        );
+
+    border:
+        1px solid var(--border);
+}
+
+.member-banner::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        220px;
+
+    height:
+        220px;
+
+    right:
+        -100px;
+
+    top:
+        -110px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,92,255,.25),
+            transparent 70%
+        );
+}
+
+.member-role {
+
+    color:
+        var(--secondary);
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        900;
+}
+
+.member-name {
+
+    font-size:
+        25px;
+
+    font-weight:
+        900;
+
+    margin-top:
+        7px;
+}
+
+.member-description {
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    margin-top:
+        6px;
+}
+
+
+/* =========================================================
+   PROJECT GRID
+========================================================= */
+
+.project-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        18px;
+}
+
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project-card {
+
+    min-height:
+        285px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        22px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:
+        blur(15px);
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform .15s ease,
+        border-color .3s,
+        box-shadow .3s;
+}
+
+.project-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        180px;
+
+    height:
+        180px;
+
+    right:
+        -100px;
+
+    bottom:
+        -100px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,92,255,.16),
+            transparent 70%
+        );
+
+    pointer-events:
+        none;
+}
+
+.project-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,.09),
+            transparent 80%
+        );
+
+    transform:
+        translateX(-130%);
+
+    transition:
+        .7s;
+
+    pointer-events:
+        none;
+}
+
+.project-card:hover::after {
+
+    transform:
+        translateX(130%);
+}
+
+.project-card:hover {
+
+    border-color:
+        rgba(124,92,255,.55);
+
+    box-shadow:
+        0 30px 70px
+        rgba(0,0,0,.35);
+}
+
+.project-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        28px;
+}
+
+.project-icon {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        15px;
+
+    font-size:
+        22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.25),
+            rgba(0,229,255,.08)
+        );
+
+    border:
+        1px solid
+        rgba(124,92,255,.25);
+}
+
+.project-number {
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    color:
+        rgba(255,255,255,.35);
+
+    letter-spacing:
+        1px;
+}
+
+.project-card h3 {
+
+    font-size:
+        18px;
+
+    line-height:
+        1.3;
+
+    margin-bottom:
+        10px;
+}
+
+.project-card p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.65;
+
+    min-height:
+        60px;
+}
+
+.project-actions {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    margin-top:
+        22px;
+}
+
+.project-btn {
+
+    flex:
+        1;
+
+    padding:
+        9px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    transition:
+        .25s;
+}
+
+.project-btn:hover {
+
+    background:
+        rgba(124,92,255,.18);
+
+    border-color:
+        rgba(124,92,255,.4);
+
+    transform:
+        translateY(-2px);
+}
+
+.project-btn.primary {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.30),
+            rgba(0,229,255,.12)
+        );
+
+    border-color:
+        rgba(124,92,255,.3);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+
+    grid-column:
+        1 / -1;
+
+    min-height:
+        180px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border:
+        1px dashed
+        rgba(255,255,255,.15);
+
+    border-radius:
+        20px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+}
+
+.loader {
+
+    width:
+        35px;
+
+    height:
+        35px;
+
+    margin:
+        auto auto 12px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.10);
+
+    border-top-color:
+        var(--secondary);
+
+    border-radius:
+        50%;
+
+    animation:
+        spin .8s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    width:
+        min(
+            1250px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        30px auto 35px;
+
+    padding:
+        30px 0;
+
+    border-top:
+        1px solid var(--border);
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+.footer strong {
+
+    color:
+        white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px) {
+
+    .project-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px) {
+
+    .navbar {
+        width:
+            calc(100% - 20px);
+    }
+
+    .github-link {
+        font-size:
+            0;
+
+        padding:
+            11px 13px;
+    }
+
+    .github-link::after {
+        content:
+            "↗";
+
+        font-size:
+            15px;
+    }
+
+    .statistics {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .project-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .section-header {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+
+    .footer {
+        flex-direction:
+            column;
+    }
+}
+
+@media(max-width:430px) {
+
+    .hero h1 {
+        letter-spacing:
+            -3px;
+    }
+
+    .statistics {
+        gap:
+            10px;
+    }
+
+    .stat {
+        padding:
+            18px 10px;
+    }
+
+    .stat-number {
+        font-size:
+            30px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- =========================================================
-         BACKGROUND
-    ========================================================= -->
 
-    <div class="background">
-        <div class="grid"></div>
-        <div class="orb one"></div>
-        <div class="orb two"></div>
-        <div class="orb three"></div>
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="orb orb-1"></div>
+
+    <div class="orb orb-2"></div>
+
+    <div class="orb orb-3"></div>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <a
+        class="logo"
+        href="https://github.com/kumarchandra24/UI-templates"
+        target="_blank"
+        rel="noopener"
+    >
+
+        <div class="logo-box">
+            <span>UI</span>
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                UI Templates
+            </div>
+
+            <div class="logo-subtitle">
+                TEAM PROJECT UNIVERSE
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <a
+        class="github-link"
+        href="https://github.com/kumarchandra24/UI-templates"
+        target="_blank"
+        rel="noopener"
+    >
+        View GitHub ↗
+    </a>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="hero">
+
+    <div class="hero-badge">
+
+        <span class="live-dot"></span>
+
+        4 MEMBERS • 16 PROJECTS
+
     </div>
 
 
-    <!-- =========================================================
-         NAVIGATION
-    ========================================================= -->
+    <h1>
 
-    <nav class="nav">
+        One Team.<br>
 
-        <a
-            class="brand"
-            href="https://github.com/kumarchandra24/UI-templates"
-            target="_blank"
+        <span>Infinite Ideas.</span>
+
+    </h1>
+
+
+    <p>
+
+        Welcome to our team's project universe — a curated collection
+        of AI applications, frontend experiences, creative interfaces
+        and innovative web projects built together.
+
+    </p>
+
+</header>
+
+
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
+
+<section class="statistics">
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="totalProjects"
         >
-            <div class="brand-logo">
-                <span>UI</span>
-            </div>
-
-            <div class="brand-text">
-                <strong>UI Templates</strong>
-                <small>Team Project Universe</small>
-            </div>
-        </a>
-
-        <a
-            class="github-btn"
-            href="https://github.com/kumarchandra24/UI-templates"
-            target="_blank"
-        >
-            <span>View Repository</span>
-            ↗
-        </a>
-
-    </nav>
-
-
-    <!-- =========================================================
-         HERO
-    ========================================================= -->
-
-    <header class="hero">
-
-        <div class="hero-badge">
-            <span class="live-dot"></span>
-            TEAM PROJECT UNIVERSE
+            16
         </div>
 
-        <h1>
-            Building Ideas<br>
-            Into Interfaces.
-        </h1>
+        <div class="stat-label">
+            Total Projects
+        </div>
 
-        <p>
-            A centralized collection of projects created by our team —
-            combining AI applications, frontend experiences, UI systems
-            and innovative web projects in one place.
-        </p>
-
-    </header>
+    </div>
 
 
-    <!-- =========================================================
-         STATISTICS
-    ========================================================= -->
+    <div class="stat">
 
-    <section class="stats">
+        <div
+            class="stat-number"
+            id="leaderProjects"
+        >
+            4
+        </div>
 
-        <div class="stat">
-            <div
-                class="stat-number"
-                id="totalProjects"
-            >
-                —
+        <div class="stat-label">
+            Team Leader
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="memberProjects"
+        >
+            12
+        </div>
+
+        <div class="stat-label">
+            Member Projects
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="contributors"
+        >
+            4
+        </div>
+
+        <div class="stat-label">
+            Contributors
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main>
+
+
+    <!-- =====================================================
+         TEAM LEADER
+    ====================================================== -->
+
+    <section
+        class="section"
+        id="team-leader"
+    >
+
+        <div class="section-header">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        TEAM LEADER
+                    </h2>
+
+                    <p>
+                        Leadership • Architecture • Product Development
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="stat-label">
-                Total Projects
+
+            <div class="section-count">
+                4 PROJECTS
             </div>
+
         </div>
 
 
-        <div class="stat">
-            <div
-                class="stat-number"
-                id="leaderProjects"
-            >
-                —
+        <div class="member-banner">
+
+            <div class="member-role">
+                Team Leadership
             </div>
 
-            <div class="stat-label">
+            <div class="member-name">
                 Team Leader
             </div>
+
+            <div class="member-description">
+                Driving project architecture, product direction,
+                development standards and overall team delivery.
+            </div>
+
         </div>
 
 
-        <div class="stat">
-            <div
-                class="stat-number"
-                id="memberProjects"
-            >
-                —
+        <div
+            class="project-grid"
+            id="leaderGrid"
+        >
+
+            <div class="loading">
+
+                <div>
+
+                    <div class="loader"></div>
+
+                    Loading Team Leader projects...
+
+                </div>
+
             </div>
 
-            <div class="stat-label">
-                Member Projects
-            </div>
-        </div>
-
-
-        <div class="stat">
-            <div
-                class="stat-number"
-                id="contributors"
-            >
-                4
-            </div>
-
-            <div class="stat-label">
-                Contributors
-            </div>
         </div>
 
     </section>
 
 
-    <!-- =========================================================
-         PROJECT SECTIONS
-    ========================================================= -->
+    <!-- =====================================================
+         MEMBER 1
+    ====================================================== -->
 
-    <main>
+    <section
+        class="section"
+        id="member-1"
+    >
 
-        <!-- TEAM LEADER -->
-
-        <section
-            class="section"
-            id="team-leader"
-        >
+        <div class="section-header">
 
             <div class="section-heading">
 
-                <div class="section-title">
-
-                    <div class="section-number">
-                        01
-                    </div>
-
-                    <div>
-                        <h2>TEAM LEADER</h2>
-
-                        <p>
-                            Core projects and applications developed by the team leader
-                        </p>
-                    </div>
-
+                <div class="section-number">
+                    02
                 </div>
 
-                <div
-                    class="section-count"
-                    id="leaderCount"
-                >
-                    Loading...
+                <div>
+
+                    <h2>
+                        MEMBER 1
+                    </h2>
+
+                    <p>
+                        Artificial Intelligence • Automation • Innovation
+                    </p>
+
                 </div>
 
             </div>
 
 
-            <div class="member-banner">
-
-                <div class="member-role">
-                    Team Leadership
-                </div>
-
-                <div class="member-name">
-                    Team Leader
-                </div>
-
-                <div class="member-description">
-                    Leading the development, architecture, UI systems and
-                    overall project direction of the team.
-                </div>
-
+            <div class="section-count">
+                4 PROJECTS
             </div>
 
+        </div>
 
-            <div
-                class="projects"
-                id="leaderProjectsGrid"
-            >
 
-                <div class="loading">
-                    <div class="loader"></div>
-                    Loading Team Leader projects...
-                </div>
+        <div class="member-banner">
 
+            <div class="member-role">
+                Member 1 • AI Development
             </div>
 
-        </section>
+            <div class="member-name">
+                AI Project Universe
+            </div>
+
+            <div class="member-description">
+                Intelligent applications, AI-powered tools,
+                automation experiences and experimental projects.
+            </div>
+
+        </div>
 
 
-        <!-- MEMBER 1 -->
-
-        <section
-            class="section"
-            id="member1"
+        <div
+            class="project-grid"
+            id="aiGrid"
         >
 
-            <div class="section-heading">
+            <div class="loading">
 
-                <div class="section-title">
+                <div>
 
-                    <div class="section-number">
-                        02
-                    </div>
-
-                    <div>
-                        <h2>MEMBER 1</h2>
-
-                        <p>
-                            AI Project Universe
-                        </p>
-                    </div>
-
-                </div>
-
-                <div
-                    class="section-count"
-                    id="member1Count"
-                >
-                    Loading...
-                </div>
-
-            </div>
-
-
-            <div class="member-banner">
-
-                <div class="member-role">
-                    Member 1 • AI Development
-                </div>
-
-                <div class="member-name">
-                    AI Project Universe
-                </div>
-
-                <div class="member-description">
-                    AI-powered applications, intelligent interfaces,
-                    automation projects and experimental AI experiences.
-                </div>
-
-            </div>
-
-
-            <div
-                class="projects"
-                id="member1Projects"
-            >
-
-                <div class="loading">
                     <div class="loader"></div>
+
                     Loading AI projects...
+
                 </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- MEMBER 2 -->
+    <!-- =====================================================
+         MEMBER 2
+    ====================================================== -->
 
-        <section
-            class="section"
-            id="member2"
-        >
+    <section
+        class="section"
+        id="member-2"
+    >
+
+        <div class="section-header">
 
             <div class="section-heading">
 
-                <div class="section-title">
-
-                    <div class="section-number">
-                        03
-                    </div>
-
-                    <div>
-                        <h2>MEMBER 2</h2>
-
-                        <p>
-                            Frontend Templates
-                        </p>
-                    </div>
-
+                <div class="section-number">
+                    03
                 </div>
 
-                <div
-                    class="section-count"
-                    id="member2Count"
-                >
-                    Loading...
+                <div>
+
+                    <h2>
+                        MEMBER 2
+                    </h2>
+
+                    <p>
+                        UI Design • Frontend • Responsive Experiences
+                    </p>
+
                 </div>
 
             </div>
 
 
-            <div class="member-banner">
-
-                <div class="member-role">
-                    Member 2 • Frontend Development
-                </div>
-
-                <div class="member-name">
-                    Frontend Templates
-                </div>
-
-                <div class="member-description">
-                    Modern frontend designs, responsive interfaces,
-                    reusable UI components and beautiful web experiences.
-                </div>
-
+            <div class="section-count">
+                4 PROJECTS
             </div>
 
+        </div>
 
-            <div
-                class="projects"
-                id="member2Projects"
-            >
 
-                <div class="loading">
+        <div class="member-banner">
+
+            <div class="member-role">
+                Member 2 • Frontend Development
+            </div>
+
+            <div class="member-name">
+                Frontend Templates
+            </div>
+
+            <div class="member-description">
+                Beautiful responsive interfaces, reusable components
+                and modern frontend experiences.
+            </div>
+
+        </div>
+
+
+        <div
+            class="project-grid"
+            id="frontendGrid"
+        >
+
+            <div class="loading">
+
+                <div>
+
                     <div class="loader"></div>
+
                     Loading frontend projects...
+
                 </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- MEMBER 3 -->
+    <!-- =====================================================
+         MEMBER 3
+    ====================================================== -->
 
-        <section
-            class="section"
-            id="member3"
-        >
+    <section
+        class="section"
+        id="member-3"
+    >
+
+        <div class="section-header">
 
             <div class="section-heading">
 
-                <div class="section-title">
-
-                    <div class="section-number">
-                        04
-                    </div>
-
-                    <div>
-                        <h2>MEMBER 3</h2>
-
-                        <p>
-                            Thanveer Templates
-                        </p>
-                    </div>
-
+                <div class="section-number">
+                    04
                 </div>
 
-                <div
-                    class="section-count"
-                    id="member3Count"
-                >
-                    Loading...
+                <div>
+
+                    <h2>
+                        MEMBER 3
+                    </h2>
+
+                    <p>
+                        Creative UI • Web Design • Interactive Templates
+                    </p>
+
                 </div>
 
             </div>
 
 
-            <div class="member-banner">
-
-                <div class="member-role">
-                    Member 3 • UI Development
-                </div>
-
-                <div class="member-name">
-                    Thanveer Templates
-                </div>
-
-                <div class="member-description">
-                    Creative website templates, application interfaces
-                    and interactive frontend experiences.
-                </div>
-
+            <div class="section-count">
+                4 PROJECTS
             </div>
 
+        </div>
 
-            <div
-                class="projects"
-                id="member3Projects"
-            >
 
-                <div class="loading">
+        <div class="member-banner">
+
+            <div class="member-role">
+                Member 3 • UI Development
+            </div>
+
+            <div class="member-name">
+                Thanveer Templates
+            </div>
+
+            <div class="member-description">
+                Creative website templates, interactive layouts
+                and polished web experiences.
+            </div>
+
+        </div>
+
+
+        <div
+            class="project-grid"
+            id="thanveerGrid"
+        >
+
+            <div class="loading">
+
+                <div>
+
                     <div class="loader"></div>
+
                     Loading Thanveer projects...
+
                 </div>
 
             </div>
 
-        </section>
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================= -->
-
-    <footer class="footer">
-
-        <div>
-            <strong>UI Templates Team</strong>
-            <br>
-            Building • Designing • Innovating
         </div>
 
-        <div>
-            GitHub Repository •
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div>
+
+        <strong>
+            UI Templates Team
+        </strong>
+
+        <br>
+
+        Building • Designing • Innovating
+
+    </div>
+
+
+    <div>
+
+        <a
+            href="https://github.com/kumarchandra24/UI-templates"
+            target="_blank"
+            rel="noopener"
+        >
+
+            github.com/kumarchandra24/UI-templates
+
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   REPOSITORY CONFIGURATION
+========================================================= */
+
+const OWNER =
+    "kumarchandra24";
+
+const REPOSITORY =
+    "UI-templates";
+
+const BRANCH =
+    "main";
+
+
+const API =
+    `https://api.github.com/repos/${OWNER}/${REPOSITORY}/contents`;
+
+
+const GITHUB =
+    `https://github.com/${OWNER}/${REPOSITORY}/tree/${BRANCH}`;
+
+
+/* =========================================================
+   THE FOUR EXACT TEAM FOLDERS
+========================================================= */
+
+const TEAM_FOLDERS = {
+
+    leader:
+        "TEAM%20LEADER",
+
+    ai:
+        "AI-Project-Universe",
+
+    frontend:
+        "Frontend_Templates",
+
+    thanveer:
+        "Thanveer_Templates"
+
+};
+
+
+/* =========================================================
+   ICONS
+========================================================= */
+
+const ICONS = [
+    "🚀",
+    "🤖",
+    "🎨",
+    "⚡",
+    "💡",
+    "🧠",
+    "🌐",
+    "✨",
+    "🔥",
+    "🛡️",
+    "📊",
+    "💻"
+];
+
+
+/* =========================================================
+   FORMAT PROJECT NAME
+========================================================= */
+
+function formatName(name) {
+
+    return name
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, char =>
+            char.toUpperCase()
+        );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   FIND PROJECTS INSIDE FOLDER
+========================================================= */
+
+async function getProjects(folder) {
+
+    const url =
+        `${API}/${folder}?ref=${BRANCH}`;
+
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error(
+            `GitHub API error: ${response.status}`
+        );
+
+    }
+
+    const items =
+        await response.json();
+
+
+    /*
+     * Project folders
+     */
+
+    const directories =
+        items.filter(
+            item =>
+                item.type === "dir"
+        );
+
+
+    /*
+     * Some projects may themselves be
+     * directly represented by index.html.
+     */
+
+    const hasIndex =
+        items.some(
+            item =>
+                item.type === "file" &&
+                item.name.toLowerCase() ===
+                "index.html"
+        );
+
+
+    if (
+        hasIndex &&
+        directories.length === 0
+    ) {
+
+        return [{
+            name:
+                folder
+                    .replace("%20", " "),
+
+            path:
+                decodeURIComponent(folder),
+
+            url:
+                `${GITHUB}/${folder}`
+        }];
+
+    }
+
+
+    return directories.map(
+        (item, index) => ({
+
+            name:
+                formatName(item.name),
+
+            path:
+                item.path,
+
+            url:
+                item.html_url,
+
+            icon:
+                ICONS[index % ICONS.length]
+
+        })
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+function createCard(
+    project,
+    index,
+    category
+) {
+
+    const card =
+        document.createElement("article");
+
+    card.className =
+        "project-card";
+
+
+    const projectUrl =
+        project.url ||
+        `${GITHUB}/${project.path}`;
+
+
+    card.innerHTML = `
+
+        <div class="project-top">
+
+            <div class="project-icon">
+
+                ${project.icon || ICONS[index % ICONS.length]}
+
+            </div>
+
+            <div class="project-number">
+
+                PROJECT
+                ${String(index + 1).padStart(2, "0")}
+
+            </div>
+
+        </div>
+
+
+        <h3>
+
+            ${escapeHTML(project.name)}
+
+        </h3>
+
+
+        <p>
+
+            ${escapeHTML(
+                getDescription(
+                    project.name,
+                    category
+                )
+            )}
+
+        </p>
+
+
+        <div class="project-actions">
+
             <a
-                href="https://github.com/kumarchandra24/UI-templates"
+                class="project-btn primary"
+                href="${projectUrl}"
                 target="_blank"
+                rel="noopener noreferrer"
             >
-                kumarchandra24/UI-templates
+
+                View Project ↗
+
             </a>
+
+
+            <a
+                class="project-btn"
+                href="${projectUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                GitHub
+
+            </a>
+
         </div>
 
-    </footer>
+    `;
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================= -->
+    /*
+     * 3D mouse animation
+     */
 
-    <script>
+    card.addEventListener(
+        "mousemove",
+        event => {
 
-        /* =========================================================
-           CONFIGURATION
-        ========================================================= */
-
-        const OWNER = "kumarchandra24";
-        const REPO = "UI-templates";
-        const BRANCH = "main";
-
-        const API_BASE =
-            `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
-
-        const GITHUB_BASE =
-            `https://github.com/${OWNER}/${REPO}/tree/${BRANCH}`;
-
-        /*
-         * These are the three member folders requested.
-         */
-
-        const MEMBER_FOLDERS = {
-            member1: "AI-Project-Universe",
-            member2: "Frontend_Templates",
-            member3: "Thanveer_Templates"
-        };
+            const rect =
+                card.getBoundingClientRect();
 
 
-        /*
-         * Team leader projects from the repository.
-         *
-         * These are automatically displayed as the first section.
-         * If you add more leader project folders later, add them here.
-         */
+            const x =
+                event.clientX -
+                rect.left;
 
-        const TEAM_LEADER_PROJECTS = [
-            {
-                name: "Gym Management",
-                path: "Gym_Management_Arvid_Sawmi/Gym_Management_Arvid_Sawmi",
-                description: "Complete gym management application with a modern dashboard and management interface.",
-                icon: "🏋️",
-                type: "Management"
-            },
 
-            {
-                name: "Policy Management",
-                path: "Policy_Management_Arvid/Policy_Management_Arvid",
-                description: "Professional policy management application with structured workflows and administrative tools.",
-                icon: "📋",
-                type: "Management"
-            },
+            const y =
+                event.clientY -
+                rect.top;
 
-            {
-                name: "AlgoLab",
-                path: "algolab/algolab",
-                description: "Interactive algorithm and learning experience designed for developers and students.",
-                icon: "🧠",
-                type: "Education"
-            },
 
-            {
-                name: "Appointment Booking",
-                path: "appointment-booking",
-                description: "Modern appointment scheduling interface with a clean booking experience.",
-                icon: "📅",
-                type: "Booking"
-            },
+            const centerX =
+                rect.width / 2;
 
-            {
-                name: "Recharge Platform",
-                path: "recharge_platform/recharge_platform_arvid",
-                description: "Recharge platform interface designed for a smooth digital payment experience.",
-                icon: "⚡",
-                type: "Platform"
-            },
 
-            {
-                name: "Sreekaram",
-                path: "sreekaram/sreekaram",
-                description: "Modern application interface focused on usability, accessibility and responsive design.",
-                icon: "✨",
-                type: "Application"
-            },
+            const centerY =
+                rect.height / 2;
 
-            {
-                name: "Student Analytics",
-                path: "student_analytics_project_v5/student_analytics_project_v5",
-                description: "Student analytics dashboard for visualizing performance and educational insights.",
-                icon: "📊",
-                type: "Analytics"
-            },
 
-            {
-                name: "URL Shield",
-                path: "urlshield/urlshield",
-                description: "Security-focused URL analysis interface designed around safe browsing workflows.",
-                icon: "🛡️",
-                type: "Security"
+            const rotateY =
+                ((x - centerX) /
+                    centerX) * 5;
+
+
+            const rotateX =
+                ((centerY - y) /
+                    centerY) * 5;
+
+
+            card.style.transform =
+                `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-8px)
+                scale(1.015)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform =
+                "";
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+/* =========================================================
+   DESCRIPTIONS
+========================================================= */
+
+function getDescription(
+    name,
+    category
+) {
+
+    const descriptions = {
+
+        leader:
+            "A core project developed under the team leadership portfolio.",
+
+        ai:
+            "An AI-focused project from the AI Project Universe collection.",
+
+        frontend:
+            "A modern frontend project from the Frontend Templates collection.",
+
+        thanveer:
+            "A creative web project from the Thanveer Templates collection."
+
+    };
+
+
+    return descriptions[category] ||
+        "A project from the UI Templates team.";
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(
+    elementId,
+    projects,
+    category
+) {
+
+    const container =
+        document.getElementById(
+            elementId
+        );
+
+
+    container.innerHTML = "";
+
+
+    /*
+     * We expect exactly four.
+     */
+
+    projects
+        .slice(0,4)
+        .forEach(
+            (project,index) => {
+
+                container.appendChild(
+                    createCard(
+                        project,
+                        index,
+                        category
+                    )
+                );
+
             }
-        ];
+        );
 
 
-        /* =========================================================
-           UTILITY
-        ========================================================= */
+    /*
+     * Safety warning if GitHub
+     * returns something unexpected.
+     */
 
-        function githubFolderUrl(path) {
+    if (projects.length !== 4) {
 
-            return `${GITHUB_BASE}/${path}`;
+        console.warn(
+            `${category}: expected 4 projects, found ${projects.length}`
+        );
 
-        }
+    }
 
-
-        function githubPagesUrl(path) {
-
-            return `https://${OWNER}.github.io/${REPO}/${path}/`;
-
-        }
+}
 
 
-        function formatName(name) {
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-            return name
-                .replace(/[-_]+/g, " ")
-                .replace(/\b\w/g, letter => letter.toUpperCase());
+async function initialize() {
 
-        }
+    try {
 
+        const [
+            leader,
+            ai,
+            frontend,
+            thanveer
+        ] = await Promise.all([
 
-        /* =========================================================
-           CREATE PROJECT CARD
-        ========================================================= */
+            getProjects(
+                TEAM_FOLDERS.leader
+            ),
 
-        function createProjectCard(project, index) {
+            getProjects(
+                TEAM_FOLDERS.ai
+            ),
 
-            const githubUrl =
-                project.githubUrl ||
-                githubFolderUrl(project.path);
+            getProjects(
+                TEAM_FOLDERS.frontend
+            ),
 
-            const liveUrl =
-                project.liveUrl ||
-                githubPagesUrl(project.path);
+            getProjects(
+                TEAM_FOLDERS.thanveer
+            )
 
-            const card =
-                document.createElement("article");
-
-            card.className = "project-card";
-
-            card.innerHTML = `
-
-                <div class="project-top">
-
-                    <div class="project-icon">
-                        ${project.icon || "🚀"}
-                    </div>
-
-                    <div class="project-number">
-                        PROJECT ${String(index + 1).padStart(2, "0")}
-                    </div>
-
-                </div>
+        ]);
 
 
-                <h3>
-                    ${escapeHtml(project.name)}
-                </h3>
+        /*
+         * Render the four groups
+         */
+
+        render(
+            "leaderGrid",
+            leader,
+            "leader"
+        );
 
 
-                <p>
-                    ${escapeHtml(
-                        project.description ||
-                        "A project created as part of the UI Templates team collection."
-                    )}
-                </p>
+        render(
+            "aiGrid",
+            ai,
+            "ai"
+        );
 
 
-                <div class="project-footer">
+        render(
+            "frontendGrid",
+            frontend,
+            "frontend"
+        );
 
-                    <span class="project-type">
-                        ${escapeHtml(project.type || "Web Project")}
-                    </span>
+
+        render(
+            "thanveerGrid",
+            thanveer,
+            "thanveer"
+        );
 
 
-                    <a
-                        class="open-project"
-                        href="${liveUrl}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Open Project →
-                    </a>
+        /*
+         * Calculate statistics.
+         *
+         * The required structure is
+         * exactly 4 projects per team.
+         */
+
+        const leaderCount =
+            Math.min(
+                leader.length,
+                4
+            );
+
+
+        const aiCount =
+            Math.min(
+                ai.length,
+                4
+            );
+
+
+        const frontendCount =
+            Math.min(
+                frontend.length,
+                4
+            );
+
+
+        const thanveerCount =
+            Math.min(
+                thanveer.length,
+                4
+            );
+
+
+        const total =
+            leaderCount +
+            aiCount +
+            frontendCount +
+            thanveerCount;
+
+
+        /*
+         * Update counters
+         */
+
+        animateNumber(
+            "totalProjects",
+            total
+        );
+
+
+        animateNumber(
+            "leaderProjects",
+            leaderCount
+        );
+
+
+        animateNumber(
+            "memberProjects",
+            aiCount +
+            frontendCount +
+            thanveerCount
+        );
+
+
+        animateNumber(
+            "contributors",
+            4
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+
+        /*
+         * Show a useful message
+         * instead of leaving the page blank.
+         */
+
+        document.querySelectorAll(
+            ".loading"
+        ).forEach(element => {
+
+            element.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        Unable to load projects
+                    </strong>
+
+                    <br><br>
+
+                    Please open the page through
+                    GitHub Pages or a web server.
 
                 </div>
 
             `;
 
+        });
 
-            /*
-             * If GitHub Pages doesn't exist for a project,
-             * the GitHub folder remains available through
-             * right-click / source repository access.
-             */
+    }
 
-            card.addEventListener("contextmenu", () => {
-                card.dataset.github = githubUrl;
-            });
+}
 
 
-            /* 3D mouse movement */
+/* =========================================================
+   NUMBER ANIMATION
+========================================================= */
 
-            card.addEventListener("mousemove", event => {
+function animateNumber(
+    elementId,
+    target
+) {
 
-                const rect =
-                    card.getBoundingClientRect();
+    const element =
+        document.getElementById(
+            elementId
+        );
 
-                const x =
-                    event.clientX - rect.left;
 
-                const y =
-                    event.clientY - rect.top;
+    const duration =
+        900;
 
-                const rotateX =
-                    ((y / rect.height) - 0.5) * -7;
 
-                const rotateY =
-                    ((x / rect.width) - 0.5) * 7;
+    const start =
+        performance.now();
 
-                card.style.transform =
-                    `
-                    perspective(1000px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translateY(-10px)
-                    scale(1.015)
-                    `;
 
-            });
+    function update(now) {
 
-
-            card.addEventListener("mouseleave", () => {
-
-                card.style.transform = "";
-
-            });
-
-
-            return card;
-
-        }
-
-
-        /* =========================================================
-           ESCAPE HTML
-        ========================================================= */
-
-        function escapeHtml(value) {
-
-            return String(value)
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-
-        }
-
-
-        /* =========================================================
-           FETCH GITHUB FOLDER
-        ========================================================= */
-
-        async function fetchGithubFolder(folder) {
-
-            const response =
-                await fetch(
-                    `${API_BASE}/${encodeURIComponent(folder)}?ref=${BRANCH}`
-                );
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Unable to load ${folder}`
-                );
-
-            }
-
-            return await response.json();
-
-        }
-
-
-        /* =========================================================
-           DISCOVER PROJECTS
-        ========================================================= */
-
-        async function discoverProjects(folder) {
-
-            try {
-
-                const items =
-                    await fetchGithubFolder(folder);
-
-                /*
-                 * Direct subdirectories are treated as projects.
-                 */
-
-                const directories =
-                    items.filter(
-                        item => item.type === "dir"
-                    );
-
-
-                const files =
-                    items.filter(
-                        item => item.type === "file"
-                    );
-
-
-                /*
-                 * If this folder itself contains index.html,
-                 * treat the folder as a single project.
-                 */
-
-                const hasIndex =
-                    files.some(
-                        file =>
-                            file.name.toLowerCase() === "index.html"
-                    );
-
-
-                if (hasIndex) {
-
-                    return [{
-                        name: formatName(
-                            folder.split("/").pop()
-                        ),
-
-                        path: folder,
-
-                        description:
-                            "A project from the UI Templates collection.",
-
-                        icon: "🚀",
-
-                        type: "Web Project"
-                    }];
-
-                }
-
-
-                /*
-                 * Otherwise each child folder becomes a project.
-                 */
-
-                return directories.map(directory => ({
-
-                    name: formatName(directory.name),
-
-                    path: directory.path,
-
-                    description:
-                        `${formatName(directory.name)} — project from the ${folder} collection.`,
-
-                    icon: "🚀",
-
-                    type: "Template"
-
-                }));
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                return [];
-
-            }
-
-        }
-
-
-        /* =========================================================
-           RENDER PROJECTS
-        ========================================================= */
-
-        function renderProjects(
-            containerId,
-            projects,
-            countId
-        ) {
-
-            const container =
-                document.getElementById(containerId);
-
-            const count =
-                document.getElementById(countId);
-
-
-            container.innerHTML = "";
-
-
-            if (!projects.length) {
-
-                container.innerHTML = `
-                    <div class="loading">
-                        <div class="error">
-                            No projects found.
-                        </div>
-                    </div>
-                `;
-
-                count.textContent =
-                    "0 projects";
-
-                return;
-
-            }
-
-
-            projects.forEach(
-                (project, index) => {
-
-                    container.appendChild(
-                        createProjectCard(
-                            project,
-                            index
-                        )
-                    );
-
-                }
+        const progress =
+            Math.min(
+                (now - start) /
+                duration,
+                1
             );
 
 
-            count.textContent =
-                `${projects.length} project${projects.length === 1 ? "" : "s"}`;
-
-        }
-
-
-        /* =========================================================
-           MAIN INITIALIZATION
-        ========================================================= */
-
-        async function initializeDashboard() {
-
-            /*
-             * Team Leader
-             */
-
-            renderProjects(
-                "leaderProjectsGrid",
-                TEAM_LEADER_PROJECTS,
-                "leaderCount"
+        const eased =
+            1 -
+            Math.pow(
+                1 - progress,
+                3
             );
 
 
-            /*
-             * Member projects
-             */
-
-            const [
-                member1,
-                member2,
-                member3
-            ] = await Promise.all([
-
-                discoverProjects(
-                    MEMBER_FOLDERS.member1
-                ),
-
-                discoverProjects(
-                    MEMBER_FOLDERS.member2
-                ),
-
-                discoverProjects(
-                    MEMBER_FOLDERS.member3
-                )
-
-            ]);
-
-
-            renderProjects(
-                "member1Projects",
-                member1,
-                "member1Count"
+        element.textContent =
+            Math.floor(
+                eased * target
             );
 
 
-            renderProjects(
-                "member2Projects",
-                member2,
-                "member2Count"
-            );
+        if (progress < 1) {
 
-
-            renderProjects(
-                "member3Projects",
-                member3,
-                "member3Count"
-            );
-
-
-            /*
-             * Statistics
-             */
-
-            const leaderTotal =
-                TEAM_LEADER_PROJECTS.length;
-
-            const memberTotal =
-                member1.length +
-                member2.length +
-                member3.length;
-
-            const total =
-                leaderTotal +
-                memberTotal;
-
-
-            animateNumber(
-                "leaderProjects",
-                leaderTotal
-            );
-
-            animateNumber(
-                "memberProjects",
-                memberTotal
-            );
-
-            animateNumber(
-                "totalProjects",
-                total
+            requestAnimationFrame(
+                update
             );
 
         }
+        else {
 
-
-        /* =========================================================
-           NUMBER ANIMATION
-        ========================================================= */
-
-        function animateNumber(
-            elementId,
-            target
-        ) {
-
-            const element =
-                document.getElementById(elementId);
-
-            const duration = 900;
-
-            const start =
-                performance.now();
-
-
-            function update(currentTime) {
-
-                const progress =
-                    Math.min(
-                        (currentTime - start) /
-                        duration,
-                        1
-                    );
-
-
-                const eased =
-                    1 -
-                    Math.pow(
-                        1 - progress,
-                        3
-                    );
-
-
-                element.textContent =
-                    Math.floor(
-                        eased * target
-                    );
-
-
-                if (progress < 1) {
-
-                    requestAnimationFrame(
-                        update
-                    );
-
-                }
-
-                else {
-
-                    element.textContent =
-                        target;
-
-                }
-
-            }
-
-
-            requestAnimationFrame(update);
+            element.textContent =
+                target;
 
         }
 
+    }
 
-        /* =========================================================
-           START
-        ========================================================= */
 
-        initializeDashboard();
+    requestAnimationFrame(
+        update
+    );
 
-    </script>
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+initialize();
+
+</script>
 
 </body>
 </html>
